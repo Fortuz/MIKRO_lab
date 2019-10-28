@@ -4,13 +4,6 @@ import matplotlib.pyplot as plt
 # -------- USED FUNCTIONS DEFINITIONS -------------------------
 
 
-
-
-
-
-
-
-
 # ------- END OF THE USED FUNCTIONS DEFINITIONS ---------------
 #--------------------------------------------------------------
 #------------------ GETTING THE DATA --------------------------
@@ -31,8 +24,15 @@ for line in data:
 X=np.array(X)
 TEMP=np.array(TEMP)
 Y=np.array(Y)
-
 X=np.column_stack((X,TEMP))
+del TEMP
+Y=Y.reshape((Y.size,1))
+
+'''
+print('X értékei:\n',X)
+print('Y értékei:\n',Y)
+'''
+
 
 
 

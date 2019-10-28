@@ -3,7 +3,6 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 import matplotlib.pyplot as plt
 
-
 # -------- USED FUNCTIONS DEFINITIONS -------------------------
 def computeCost(X,Y,w):
     m = Y.size
