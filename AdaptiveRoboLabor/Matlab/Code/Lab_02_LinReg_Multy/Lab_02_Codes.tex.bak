@@ -1,0 +1,38 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}       % change font encoding to T1
+\usepackage[framed,numbered]{matlab-prettifier}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=30mm,
+ right=30mm,
+ top=20mm,
+ bottom=35mm,
+ }
+
+\begin{document}
+
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{Lab_02_LinReg_Multi.m}
+
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{featureNormalize.m}
+
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{gradientDescentMulti.m}
+
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{computeCostMulti.m}
+
+\end{document}
