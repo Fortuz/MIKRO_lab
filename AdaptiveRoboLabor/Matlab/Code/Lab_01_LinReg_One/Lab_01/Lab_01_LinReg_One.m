@@ -116,7 +116,7 @@ figure;
 % Plot C_vals as 15 contours spaced logarithmically between 0.01 and 100
 contour(w0_vals, w1_vals, C_vals, logspace(-2, 3, 20))
 xlabel('w_0'); 
-ylabel('w_1');c
+ylabel('w_1');
 hold on;
 plot(w(1), w(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 
