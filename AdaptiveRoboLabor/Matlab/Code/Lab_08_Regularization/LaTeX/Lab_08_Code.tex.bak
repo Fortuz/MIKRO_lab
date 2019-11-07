@@ -1,0 +1,63 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}       % change font encoding to T1
+\usepackage[framed,numbered]{matlab-prettifier}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=30mm,
+ right=30mm,
+ top=20mm,
+ bottom=35mm,
+ }
+
+\begin{document}
+
+Lab\_08\_Regularisation.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../Lab_08_Regularisation.m}
+
+\newpage
+linearRegCostFunction.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../linearRegCostFunction.m}
+
+trainLinearReg.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../trainLinearReg.m}
+\vspace{10mm}
+
+learningCurve.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../learningCurve.m}
+
+polyFeatures.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../polyFeatures.m}
+
+featureNormalize.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../featureNormalize.m}
+
+\newpage
+validationCurve.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../validationCurve.m}
+
+\end{document}

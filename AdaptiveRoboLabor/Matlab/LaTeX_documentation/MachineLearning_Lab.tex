@@ -1,0 +1,728 @@
+\documentclass[12pt]{article}
+
+\usepackage[colorlinks]{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc} % special characters like ^
+\usepackage[magyar]{babel}
+\usepackage{mathtools}
+\usepackage{indent first}
+\usepackage{amsmath} % mátrixokhoz kell
+\frenchspacing % mondatok közti nagyobb szóközt kapcsolja ki
+\author{Balázs Nagy}
+\title{Machine Learning Basics}
+
+\usepackage{titlesec}
+
+\titleformat*{\section}{\LARGE\bfseries}
+\titleformat*{\subsection}{\Large\bfseries}
+\titleformat*{\subsubsection}{\large\bfseries}
+\titleformat*{\paragraph}{\large\bfseries}
+\titleformat*{\subparagraph}{\large\bfseries}
+
+\newcommand\tab[1][1cm]{\hspace*{#1}}
+\newcommand*{\bfrac}[2]{\genfrac{\lbrace}{\rbrace}{0pt}{}{#1}{#2}}
+
+\begin{document}
+
+\maketitle
+\bigskip
+
+"The field of study that gives computers the ability to learn without being explicitly programmed."\\
+
+\hfill /Arthur Samuel/
+\pagebreak
+
+Notes:\\
+h - hypothesis\\
+w - weights\\
+x - input \\
+y - output \\
+\^{y} - prediction\\ 
+\\
+m - total number of samples\\
+i - index of samples\\
+C - cost function\\
+MSE - Mean Squared Error\\
+$\mu$ - learning rate, 0 $<$ $\mu$ $\leq$ 1 
+$\lambda$ - regularization 
+
+\begin{equation}
+\underset{3\times 1}{X}=\left[
+\begin{matrix}
+	1\\
+	2\\
+	3\\
+\end{matrix} \right], 
+\underset{3\times 1}{Y}=\left[
+\begin{matrix}
+	1\\
+	2\\
+	3\\
+\end{matrix} \right]
+\end{equation}
+\begin{equation}
+h_{w}(x)=wx= \hat{y}
+\end{equation}
+\begin{equation}
+w = 0, C = 2.33
+\end{equation}
+\begin{equation}
+w = 0.5, C = 0.58
+\end{equation}
+\begin{equation}
+w = 1, C = 0
+\end{equation}
+
+\begin{equation}
+C(w)
+=\frac{1}{2m}\sum_{i=1}^{m}(wx^i-y^{i})^2
+\end{equation}
+
+\begin{equation}
+w=w-\mu \frac{\partial}{\partial w}C(w)
+\end{equation}
+
+\begin{equation}
+\frac{\partial}{\partial w}C(w)
+=\frac{1}{m}\sum_{i=1}^{m}(wx^i-y^{i})\cdot x^{i}
+\end{equation}
+
+$w_j^t:=w_j^{t-1}-\mu\frac{\partial}{\partial w_j}C(w_0,w_1)+\triangle w_j^{t-1}$\\
+
+\newpage\
+\begin{equation}
+\left[
+\begin{matrix}
+	(0 \cdot 1 - 1)\cdot 1 \\
+	(0 \cdot 2 - 2)\cdot 2 \\
+	(0 \cdot 3 - 3)\cdot 3 \\
+\end{matrix} \right]
+=\left[
+\begin{matrix}
+	-1\\
+	-4\\
+	-9\\
+\end{matrix} \right],
+0.1 \cdot \frac{-14}{3}=-0.46
+\end{equation}
+\begin{equation}
+w = 0 - (-0.46)=0.46
+\end{equation}
+\begin{equation}
+\left[
+\begin{matrix}
+	(0.46 \cdot 1 - 1)\cdot 1\\
+	(0.46 \cdot 2 - 2)\cdot 2\\
+	(0.46 \cdot 3 - 3)\cdot 3\\
+\end{matrix} \right]
+=\left[
+\begin{matrix}
+	-0.53\\
+	-2.13\\
+	-4.8\\
+\end{matrix} \right],
+0.1 \cdot \frac{-7.46}{3}=-0.249
+\end{equation}
+\begin{equation}
+w = 0.46 - (-0.249)=0.71
+\end{equation}
+
+\begin{equation}
+\left[
+\begin{matrix}
+	(0.71 \cdot 1 - 1)\cdot 1\\
+	(0.71 \cdot 2 - 2)\cdot 2\\
+	(0.71 \cdot 3 - 3)\cdot 3\\
+\end{matrix} \right]
+=\left[
+\begin{matrix}
+	-0.28\\
+	-1.13\\
+	-2.56\\
+\end{matrix} \right],
+0.1 \cdot \frac{-3.98}{3}=-0.132
+\end{equation}
+\begin{equation}
+w = 0.71 - (-0.132)=0.842
+\end{equation}
+\newpage\
+\section{Labor:\\ \large Linear regression with one variable}
+
+\noindent
+Hypothesis:\\
+\begin{equation}
+h_{w}(x)=w_{0}+w_{1}x
+\end{equation}
+
+\begin{equation}
+h_{w}(x)=w_{0}+w_{1}x= \hat{y}
+\end{equation}
+
+Cost function:\\
+\begin{equation}
+C=\frac{1}{2m}\sum_{i=1}^{m}(\hat{y}^{i}-y^{i})^2
+\end{equation}
+\begin{equation}
+C=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i})^2
+\end{equation}
+\begin{equation}
+C(w_{0},w_{1})
+\end{equation}
+\begin{equation}
+C(w_{0},w_{1})=\frac{1}{2m}\sum_{i=1}^{m}(w_{0}+w_{1}x^{i}-y^{i})^2
+\end{equation}
+
+\begin{equation}
+\underset{m\times 1}{X}=\left[
+\begin{matrix}
+	x^{1}\\
+	x^{2}\\
+	x^{3}\\
+	\vdots\\
+	x^{m}
+\end{matrix} \right], 
+\underset{2\times 1}{W}=\left[
+\begin{matrix}
+	w_{0}\\
+	w_{1}
+\end{matrix} \right],
+\underset{m\times 1}{Y}=\left[
+\begin{matrix}
+	y^{1}\\
+	y^{2}\\
+	y^{3}\\
+	\vdots\\
+	y^{m}
+\end{matrix} \right]
+\end{equation}
+
+
+\begin{equation}
+X=\left[
+\begin{matrix}
+	1 & x^{1}\\
+	1 & x^{2}\\
+	1 & x^{3}\\
+	\vdots & \vdots\\
+	1 & x^{m}
+\end{matrix} \right] \Rightarrow
+\underset{m\times 2}{X}=\left[
+\begin{matrix}
+	x_{0}^{1} & x_{1}^{1}\\
+	x_{0}^{2} & x_{1}^{2}\\
+	x_{0}^{3} & x_{1}^{3}\\
+	\vdots &\vdots\\
+	x_{0}^{m} & x_{1}^{m}
+\end{matrix} \right]
+\end{equation}
+
+\begin{equation}
+\hat{y}=h_{w}(x)=w_{0}+w_{1}x^{i} = w_{0}x_{0}^{i}+w_{1}x_{1}^{i}
+\end{equation}
+
+\begin{center}
+\begin{tabular}{l*{2}{c}r}
+\  
+& 
+$
+\underset{2\times 1}{W}=\left[
+\begin{matrix}
+	w_{0}\\
+	w_{1}
+\end{matrix} \right]
+$
+\\
+$
+\underset{m\times 2}{X}=\left[
+\begin{matrix}
+	x_{0}^{1} & x_{1}^{1}\\
+	x_{0}^{2} & x_{1}^{2}\\
+	x_{0}^{3} & x_{1}^{3}\\
+	\vdots &\vdots\\
+	x_{0}^{m} & x_{1}^{m}
+\end{matrix} \right]
+$
+& 
+$
+\left[
+\begin{matrix}
+	w_{0}x_{0}^{1}+w_{1}x_{1}^{1}\\
+	w_{0}x_{0}^{2}+w_{1}x_{1}^{2}\\
+	w_{0}x_{0}^{3}+w_{1}x_{1}^{3}\\
+	\vdots\\
+	w_{0}x_{0}^{m}+w_{1}x_{1}^{m}\\
+\end{matrix} \right]
+$
+&
+$
+= \underset{m\times 1}{\hat{Y}}=XW
+$
+\\
+\end{tabular}
+\end{center}
+\begin{equation}
+C=\frac{\sum(XW-Y)^2}{2m}
+\end{equation}
+
+\subsection{Gradient descent}
+To solve: $minC(w_0,\hdots,w_n)$\\
+Algorithm:\\
+\tab repeat until convergence \{\\
+\tab \tab $w_j:=w_j-\mu\frac{\partial}{\partial w_j}C(w_0,w_1)$\\
+\tab \}\\
+\\
+\begin{center}
+Linear Regression Model\\
+\end{center}
+\begin{equation}
+h_w(x)=w_0+w_1x
+\end{equation}
+\begin{equation}
+C(w_0,w_1)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i})^2
+\end{equation}
+
+\tab Gradient descent\\
+\tab repeat until convergence \{\\
+\tab \tab $w_j:=w_j-\mu\frac{\partial}{\partial w_j}C(w_0,w_1)$\\
+\tab \}\\
+\\
+\begin{equation}
+\frac{\partial}{\partial w_j}C(w_0,w_1)=\frac{\partial}{\partial w_j}\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i})^2
+=\frac{\partial}{\partial w_j}\frac{1}{2m}\sum_{i=1}^{m}(w_0+w_1x^i-y^{i})^2
+\end{equation}
+
+\begin{equation}
+{\color{red} (j=0)} \tab  \frac{\partial}{\partial w_j}C(w_0,w_1)=\frac{1}{m}\sum_{i=1}^{m}(w_0+w_1x^i-y^{i})\cdot 1=\frac{1}{m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i})\cdot {\color{red}x_0^i}
+\end{equation}
+
+\begin{equation}
+{\color{red} (j=1)} \tab  \frac{\partial}{\partial w_j}C(w_0,w_1)=\frac{1}{m}\sum_{i=1}^{m}(w_0+w_1x^i-y^{i})\cdot x_1^i=\frac{1}{m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i})\cdot x_1^i
+\end{equation}
+
+Interpretation\\
+\begin{equation}
+w_0=w_0-\frac{\mu}{m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i})
+\end{equation}
+
+\begin{equation}
+\hspace{7mm} w_1=w_1-\frac{\mu}{m}\sum_{i=1}^{m}(h_w(x^{i})-y^{i}) \cdot x^i
+\end{equation}
+
+{\color{red}
+\begin{equation}
+w_0=w_0-\frac{\mu}{m}sum(X*w-Y)
+\end{equation}
+
+\begin{equation}
+\hspace{17mm} w_1=w_1-\frac{\mu}{m}sum(X*w-Y).*X(:,2)
+\end{equation}
+}
+\newpage
+\section{Labor:\\ \large Linear regression with multiple variable}
+\begin{equation}
+\underset{m\times (n+1)}{X}=\left[
+\begin{matrix}
+	x_{0}^{1} & x_{1}^{1} & x_{2}^{1} & \hdots & x_{n}^{1} \\
+	x_{0}^{2} & x_{1}^{2} & x_{2}^{2} & \hdots & x_{n}^{2} \\
+	x_{0}^{3} & x_{1}^{3} & x_{2}^{3} & \hdots & x_{n}^{3} \\
+	\vdots    & \vdots    & \vdots    & \ddots & \vdots    \\
+	x_{0}^{m} & x_{1}^{m} & x_{2}^{m} & \hdots & x_{n}^{m} \\
+\end{matrix} \right], 
+\underset{(n+1)\times 1}{W}=\left[
+\begin{matrix}
+	w_{0}\\
+	w_{1}\\
+	w_{2}\\
+	\vdots\\
+	w_{n}
+\end{matrix} \right],
+\underset{m\times 1}{Y}=\left[
+\begin{matrix}
+	y^{1}\\
+	y^{2}\\
+	y^{3}\\
+	\vdots\\
+	y^{m}
+\end{matrix} \right]
+\end{equation}
+Hypothesis:
+\begin{equation}
+h_{w}(x)=w_0+w_1x_1+w_2x_2+\hdots+w_nx_n
+\end{equation}
+\begin{equation}
+\label{eq:proba} 
+h_{w}(x)=w_0x_0+w_1x_1+w_2x_2+\hdots+w_nx_n
+\end{equation}
+
+\begin{tabular}{l*{2}{c}r}
+&
+$
+\underset{(n+1)\times 1}{W}=\left[
+\begin{matrix}
+	w_{0}\\
+	w_{1}\\
+	w_{2}\\
+	\vdots\\
+	w_{n}
+\end{matrix} \right]
+$
+\\
+$
+\underset{m\times (n+1)}{X}=\left[
+\begin{matrix}
+	x_{0}^{1} & x_{1}^{1} & x_{2}^{1} & \hdots & x_{n}^{1} \\
+	x_{0}^{2} & x_{1}^{2} & x_{2}^{2} & \hdots & x_{n}^{2} \\
+	x_{0}^{3} & x_{1}^{3} & x_{2}^{3} & \hdots & x_{n}^{3} \\
+	\vdots    & \vdots    & \vdots    & \ddots & \vdots    \\
+	x_{0}^{m} & x_{1}^{m} & x_{2}^{m} & \hdots & x_{n}^{m} \\
+\end{matrix} \right]
+$
+&
+$
+\left[
+\begin{matrix}
+	w_0x_0^1+w_1x_1^1+w_2x_2^1+\hdots+w_nx_n^1\\
+	w_0x_0^2+w_1x_1^2+w_2x_2^2+\hdots+w_nx_n^2\\
+	w_0x_0^3+w_1x_1^3+w_2x_2^3+\hdots+w_nx_n^3\\
+	\vdots\\
+	w_0x_0^m+w_1x_1^m+w_2x_2^m+\hdots+w_nx_n^m\\
+\end{matrix} \right]
+$
+\end{tabular}
+\bigskip
+\\
+Cost function:
+\begin{equation}
+C(W)=C(w_0,w_1,\hdots,w_n)=\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^i)-y^i)^2
+\end{equation}
+
+Gradient Descent:
+\begin{equation}
+w_j:=w_j-\mu\frac{1}{2m}\sum_{i=1}^{m}(h_w(x^i)-y^i)\cdot x_j^i
+\end{equation}
+
+\begin{equation}
+\label{equation1}
+x=\frac{x-mean(x)}{std(x)}
+\end{equation}
+
+hivatkozás \ref{equation1}
+
+\begin{tabular}{l*{2}{c}r}
+\ 
+&
+$
+v=\left[
+\begin{matrix}
+	v_{0}\\
+	v_{1}\\
+	v_{2}\\
+	\vdots\\
+	v_{n}
+\end{matrix} \right]
+$
+\\
+$
+v'=\left[
+\begin{matrix}
+	v_{0} & v_{1} & v_{2}& \hdots & v_{n}\\
+\end{matrix} \right]
+$
+&
+$
+\left[
+\begin{matrix}
+	(v_0)^2+(v_1)^2+(v_2)^2+\hdots+(v_n)^2\\	
+\end{matrix} \right]
+$
+&
+$
+{\color{red}
+\rightarrow v'v=sum(v.\char`\^ 2)
+}
+$
+\end{tabular}
+\newpage
+
+\section{Labor:\\ \large Logistic regression Linear case}
+
+\begin{equation}
+y\in\{0,1\}
+\end{equation}\\
+0: Negative class\\
+1: Positive class\\
+
+\begin{equation}
+h_w(x)=XW
+\end{equation}\\
+
+Threshold classifier output $h_w(x)$ at 0.5:\\
+\tab If $h_w(x)\geq 0.5$, predict "y=1"\\
+\tab If $h_w(x)< 0.5$, predict "y=0"\\
+
+$h_w(x)$ can be >1 or <0\\
+\hspace{10mm}\\
+Logistic regession: $0\leq h_w(x) \leq 1$  \\
+\textbf{Logistic Regression Model:}\\
+\tab Want $0\leq h_w(x)\leq 1$\\
+\tab $h_w(x)=g(Xw)$\\
+\begin{equation}
+g(z)=\frac{1}{1+e^{-z}}
+\end{equation}\\
+$h_w(x) \Rightarrow$ estimated probability that $y=1$ on input $x$\\
+$h_w(x)=P(y=1|x, W)$\\
+sigmoid function
+
+Example I.
+\begin{equation}
+h_w(x)=g(w_01+w_1x_1+w_2x_2)
+\end{equation}
+$w=[-3\ 1\ 1]$\\
+Predict: $y=1$ if $-3+x_1+x_2\geq0$\\
+$x_1+x_2\geq3$\\
+
+\newpage
+Example II.
+\begin{equation}
+h_w(x)=g(w_01+w_1x_1+w_2x_2+w_3x_1^2+w_4x_2^2)
+\end{equation}
+$w=[-1\ 0\ 0\ 1\ 1]$\\
+Predict: $y=1$ if $-1+x_1^2+x_2^2\geq0$\\
+$x_1^2+x_2^2\geq1$\\
+
+{\color{red}
+\hspace*{0.5cm}$g(z)\geq0.5$\\
+\tab when $z\geq0$\\}
+\begin{equation}
+Cost(h_w(x), y)=\bfrac{-log(h_w(x)),\ if\ y=1}{-log(1-h_w(x)),\ if\ y=0}
+\end{equation}
+
+\begin{equation}
+Cost(h_w(x), y)=-y\cdot log(h_w(x))-(1-y)\cdot log(1-h_w(x))
+\end{equation}
+
+\begin{equation}
+C(W)=-\frac{1}{m}\sum_{i=1}^{m}y^{i}\cdot log(h_w(x^{i}))+2(1-y^{i})\cdot log(1-h_w(x^{i}))
+\end{equation}
+Want min $min_W\{C(W)\}$\\
+Algorithm:\\
+\tab repeat until convergence \{\\
+\tab \tab $W_j:=W_j-\mu\frac{\partial}{\partial W_j}C(W)$\\
+\tab \}\\
+
+\begin{equation}
+\frac{\partial}{\partial W_j}C(W)=\frac{1}{m}\sum_{i=1}^{m}(h_w(x^i)-y^i)\cdot x_j^i
+\end{equation}
+
+\newpage
+\section{Labor:\\ \large Logistic regression Non Linear case}
+Using Polinomial Features\\
+$x_1\ x_2\ \Rightarrow\ 1\ x_1\ x_2\ x_1^2\ x_1x_2\ x_2^2\ x_1^3\ x_1^2x_2\ x_1x_2^2\ x_2^3$\\
+\begin{center}
+$w_0+w_1x$\\
+"Underfit"\\
+"High Bias"\\
+\vspace{10mm}
+$w_0+w_1x+w_2x^2$\\
+Just Right\\
+\vspace{10mm}
+$w_0+w_1x+w_2x^2+w_3x^3+w_4x^4$\\
+"Overfit"\\
+"High Variance"
+\end{center}
+
+Regularization:
+\begin{equation}
+C(w)=\frac{1}{2m}\sum_{i=1}^m(h_w(x^i)-y^i)^2+\lambda\sum_{j=1}^nw_j^2
+\end{equation}
+If $\lambda$ large: algorithm result in underfitting\\ 
+(fails to fit even the training set)
+
+Regularized Logistic Regression:\\
+Repeat\{\\
+\tab $$w_0:=w_0-\mu\frac{1}{m}\sum_{i=1}^{m}(h_w(x^i)-y^i)\cdot x_0^i$$\\
+\tab $$w_j:=w_j-\mu[ \frac{1}{m}\sum_{i=1}^{m}(h_w(x^i)-y^i)\cdot x_j^i]+\frac{\lambda}{m}w_j$$\\
+\}
+\\
+
+Cost function and derivative:
+\begin{equation}
+C(w)=[-\frac{1}{m}\sum_{i=1}^{m}y^i\cdot log(h_w(x^i))+(1-y^i)\cdot log(1-h_w(x^i))]+\frac{\lambda}{2m}\sum_{j=1}^nw_j^2
+\end{equation}
+
+\begin{equation}
+\frac{\partial}{\partial w_0}C(w)=\frac{1}{m}\sum_{i=1}^{m}(h_w(x^i)-y^i)\cdot x_0^i+{\color{red} 0}
+\end{equation}
+\begin{equation}
+\frac{\partial}{\partial w_j}C(w)=\frac{1}{m}\sum_{i=1}^{m}(h_w(x^i)-y^i)\cdot x_j^i+\frac{\lambda}{m}w_j\\
+\end{equation}
+\newpage
+
+\section{Labor:\\ \large Multi Class Classification}
+\newpage
+\section{Labor:\\ \large Neural Networks Basics}
+\newpage
+\section{Labor:\\ \large Neural Network Train}
+To the picture
+$$x_1\\$$
+$$x_2\\$$
+$$w_{11}^{(1)}\\$$
+$$w_{12}^{(1)}\\$$
+$$w_{13}^{(1)}\\$$
+$$w_{21}^{(1)}\\$$
+$$w_{22}^{(1)}\\$$
+$$w_{23}^{(1)}\\$$
+$$w_{11}^{(2)}\\$$
+$$w_{12}^{(2)}\\$$
+$$w_{13}^{(2)}\\$$
+$$s^{2}$$
+$$s^{3}$$
+$$a^{2}$$
+$$a^{3}$$
+\begin{equation}
+s = \sum_{i=1}^{n}w_i\cdot x_i
+\end{equation}
+\begin{equation}
+y = a(s)
+\end{equation}
+\newpage
+\begin{equation}
+xw^{(1)} = s^{(2)}
+\end{equation}
+\begin{equation}
+a^{(2)} = f(s^{(2)}) = sigmoid(s^{(2)}) 
+\end{equation}
+\begin{equation}
+s^{(3)} = a^{(2)}w^{(2)}
+\end{equation}
+\begin{equation}
+\hat{y} = f(s^{(3)}) = sigmoid(s^{(3)})
+\end{equation}
+
+\begin{equation}
+C = \sum \{\frac{1}{2}(y-{\color{red}\hat{y}})^2\}
+\end{equation}
+
+\begin{equation}
+C = \sum\{\frac{1}{2}(y-{\color{red}a^{(3)}})^2 \}
+\end{equation}
+
+\begin{equation}
+C = \sum\{\frac{1}{2}(y-f({\color{red}s^{(3)}}))^2\}
+\end{equation}
+
+\begin{equation}
+C = \sum\{\frac{1}{2}(y-f({\color{red}a^{(2)}}w^{(2)}))^2\}
+\end{equation}
+
+\begin{equation}
+C = \sum\{\frac{1}{2}(y-f(f({\color{red}s^{(2)}})w^{(2)}))^2\}
+\end{equation}
+
+\begin{equation}
+C = \sum\{\frac{1}{2}(y-f(f(xw^{(1)})w^{(2)}))^2\}
+\end{equation}
+
+Back propagation:
+\begin{equation}
+\frac{\partial C}{\partial w^{(2)}} = \frac{\partial \sum \frac{1}{2}(y-\hat{y})^2}{\partial w^{(2)}} = \sum (\frac{\partial \frac{1}{2}(y-\hat{y})^2}{\partial w^{(2)}})
+\end{equation}
+
+
+\begin{equation}
+    \begin{split}
+    \frac{\partial \frac{1}{2}(y-\hat{y})^2}{\partial w^{(2)}} 
+	& =(y-\hat{y})(-\frac{\hat{y}}{\partial w^{(2)}}) \\
+	& = -(y-\hat{y}) \cdot \frac{\partial \hat{y}}{\partial s^{(3)}}\cdot \frac{\partial 	s^{(3)}}{\partial w^{(2)}}\\	
+	& = -(y-\hat{y}) \cdot f'(s^{(3)})\cdot
+	\frac{\partial a^{(2)}w^{(2)}}{\partial w^{(2)}}\\
+	& = {\color{red} \delta^{(3)} \cdot a^{(2)}}
+    \end{split}
+\end{equation}
+Dimension check:
+\begin{equation}
+(a^{(2)})^T \delta^{(3)}
+\end{equation}
+
+\begin{equation}
+-(y-\hat{y}) \cdot f'(s^{(3)}) = \delta^{(3)}\\
+\end{equation}
+\begin{equation}
+(a^{(2)})^T \delta^{(3)} =  \frac{\partial C}{\partial w^{(2)}}
+\end{equation}
+\begin{equation}
+ \delta ^{(3)} \cdot (w^{(2)})^T \cdot f'(s^{(2)})= \delta ^{(2)}
+\end{equation}
+\begin{equation}
+x^T \delta^{(2)} =  \frac{\partial C}{\partial w^{(1)}}
+\end{equation}
+{\color{red}
+\begin{equation}
+w^{(1)} = w^{(1)} - \mu \frac{\partial C}{w^{(1)}}+ regularization 
+\end{equation}
+\begin{equation}
+w^{(2)} = w^{(2)} - \mu \frac{\partial C}{w^{(2)}}+ regularization 
+\end{equation}
+$\delta_1^{(3)}$\\
+\\
+$\delta_1^{(2)}$\\
+\\
+$\delta_2^{(2)}$\\
+\\
+$\delta_3^{(2)}$\\
+
+}
+\newpage
+\section{Labor:\\ \large Regularization}
+\newpage
+\section{Labor:\\ \large Support Vector Machine}
+Logistic regression:
+\begin{equation}
+h_w(x)=\frac{1}{1+e^{-Xw}}
+\end{equation}
+\begin{equation}
+h_w(x)=g(Xw)
+\end{equation}
+
+\begin{equation}
+h_w(x)=g({\color{red}z})
+\end{equation}
+Cost function:
+
+\begin{equation}
+C = -(y \cdot log(h_w(x)+(1-y)\cdot log(1-h_w(x)))
+\end{equation}
+
+\begin{equation}
+C = -y \cdot log(h_w(x)-(1-y)\cdot log(1-h_w(x))
+\end{equation}
+ \\
+If $y=1$, we want $Xw\geq 1$ (not just $\geq 0$)\\
+If $y=0$, we want $Xw< -1$ (not just $< 0$)\\
+
+\begin{equation}
+h_w(x)=\frac{1}{1+e^{-Xw}}=\frac{1}{1+e^{-z}}=g(z)
+\end{equation}
+
+$$cost_1(z)$$
+$$cost_0(z)$$
+\begin{equation}
+min_w\ \frac{1}{m} \Big[ \sum_{i=1}^m y^{(i)}\cdot \big(-log(h_w(x^{(i)})+(1-y^{(i)})\big)\cdot \big(-log(1-h_w(x^{(i)}))\big)\Big] +\frac{\lambda}{2m}\sum_{j=1}^nw_j^2
+\end{equation}
+
+\begin{equation}
+min_w\ {\color{red} C} \Big[ \sum_{i=1}^m y^{(i)}\cdot {\color{red} cost_1}(h_w(x^{(i)})+(1-y^{(i)})\big)\cdot{\color{red} cost_0}(1-h_w(x^{(i)}))\big)\Big] +\frac{{\color{red} 1}}{2}\sum_{j=1}^nw_j^2
+\end{equation}
+
+\newpage
+\section{Labor:\\ \large Spam Email}
+\newpage
+\section{Labor:\\ \large K-Means}
+\newpage
+\section{Labor:\\ \large Principal Component Analysis}
+\newpage
+\section{Labor:\\ \large Anomaly Detection}
+\newpage
+\section{Labor:\\ \large Recommender System}
+
+\end{document}

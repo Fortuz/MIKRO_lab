@@ -1,0 +1,46 @@
+\documentclass[10pt, a4paper]{article}
+
+\usepackage[T1]{fontenc}       % change font encoding to T1
+\usepackage[framed,numbered]{matlab-prettifier}
+
+\usepackage{geometry}
+ \geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=30mm,
+ right=30mm,
+ top=20mm,
+ bottom=35mm,
+ }
+
+\begin{document}
+Given:\\
+- plotData.m\\
+- plotDecisionBoundary\\
+
+Lab\_03\_LogisticReg\_Lin.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../Lab_03_LogisticReg_Lin.m}
+
+\newpage
+sigmoid.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../sigmoid.m}
+
+costFunction.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../costFunction.m}
+
+predict.m
+\lstinputlisting[
+  style      = Matlab-editor,
+  basicstyle = \mlttfamily,
+]{../predict.m}
+
+\end{document}
