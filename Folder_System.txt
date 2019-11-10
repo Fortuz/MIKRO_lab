@@ -27,6 +27,7 @@ Readme
 ----# README 1 oldal
 * ki csinálta
 * elérhetõsége
+* project state: Ongoing, Finished
 * projet rövis ismertetése 
 * project mappa felépítése
 * mire készült/mi lett belõle - szakdoga, diploma, TDK, stb...
