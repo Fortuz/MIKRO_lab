@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import scipy.optimize as sco
 # -------- USED FUNCTIONS DEFINITIONS -------------------------
 def plotData(X,Y):
     pos=[]
