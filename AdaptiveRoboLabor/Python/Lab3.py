@@ -15,35 +15,61 @@ def plotData(X,Y):
     neg = np.array(neg)
     pos = np.array(pos)
 
-    plt.plot(neg[:,0],neg[:,1],'x')
-    plt.plot(pos[:,0],pos[:,1],'o')
+    plt.scatter(neg[:,0],neg[:,1],marker='x',c="r", label="Not admitted")
+    plt.scatter(pos[:,0],pos[:,1],marker='o',c="g", label="Admitted")
     plt.legend(['Not admitted','Admitted'])
+    plt.xlabel("Exam 1 score")
+    plt.ylabel("Exam 2 score")
     plt.show()
 
     return pos, neg
 
 def sigmoid(z):
-    g = np.zeros(z.size)
-    g = 1/(1 + np.exp(-z))
-
-    return g
+    # calculates the sigmoid function value
+    return 1/(1 + np.exp(-z))
 
 def costFunction(w,X,Y):
-    m = Y.size
-    C = 0
+    prediction = np.array(sigmoid(X@w))
+    error = ((-Y) * np.log(prediction)) - ((1-Y)*(np.log(1-prediction)))
+    C = (1/m) * np.sum(error)
 
-    C = (1/m) * np.sum((-Y) * (np.log(sigmoid(X@w))) - (1-Y) * (np.log(sigmoid(X@w))))
+    grad = (X.transpose())@(prediction-Y)/m
 
-    return C
+    return C, grad
 
-def gradFunction(w,X,Y):
-    grad = np.zeros(w.size)
+def featureNormalization(X):
+    mean = np.mean(X,axis=0)
+    std = np.std(X, axis=0,ddof=1)
+    X_temp = X.copy()
 
-    for i in range(0,w.size):
-        grad[i] = (1/m) * np.sum((np.reshape(sigmoid(X@w),(m,1))-Y) * np.reshape((X[:,i]),(m,1)))
+    if std[0] == 0:
+        X_temp=np.delete(X_temp,0,1)
+        X_norm = (X_temp - mean[1:3]) / std[1:3]
+        X_norm=np.column_stack((np.ones((m,1)),X_norm))
+    else:
+        X_norm = (X_temp - mean) / std
 
-    return grad
+    return X_norm,mean,std
 
+def gradientDescent(X,Y,w,alpha,num_iters=400):
+    C_history = []
+
+    for i in range(num_iters):
+        C, grad = costFunction(w,X,Y)
+        w = w - (alpha*grad)
+        C_history.append(C)
+
+    return w, np.array(C_history)
+
+def predictionMaking(X):
+    X = (X-mean[1:3])/std[1:3]
+    X = np.append(np.ones((1)),X)
+    return sigmoid(X@w)
+
+def calculateAccuracy(w,X,Y):
+    predictions= (sigmoid(X@w)>0.5)
+    percentage=(sum(predictions==Y)/m)*100
+    return percentage
 
 # ------- END OF THE USED FUNCTIONS DEFINITIONS ---------------
 #--------------------------------------------------------------
@@ -74,35 +100,77 @@ print('X értékei:\n', X)
 print('Y értékei:\n', Y)
 '''
 #----------------- Plot the data ---------------------
-plotData(X,Y)
+pos,neg=plotData(X,Y)
 #----------------- Reshape data + initialization -----
 m,n = X.shape           # m adatok száma / n feature-k száma
-
 X=np.column_stack((np.ones((m,1)),X))       # bias
 #----------------- teszt nulla és nem nulla súlyokkal
-initial_w = np.zeros((n+1))
-C = costFunction(initial_w,X,Y)
-grad = gradFunction(initial_w,X,Y)
+initial_w = np.zeros(((n+1),1))
+C,grad = costFunction(initial_w,X,Y)
 
 print('''Cost and Gradient  at initial weights (zeros):
 Expected cost (approx.): 0.693
 Computed:''',C)
 print('''Expected gradient(approx.):
  [-0.1  -12.0092    -11.2628]
-Computed:\n''',grad)
+Computed:\n''',grad.transpose())
 
-test_w = np.array([-24, 0.2, 0.2])
-C = costFunction(test_w,X,Y)
-grad = gradFunction(test_w,X,Y)
-print('Test weights:',test_w)
+test_w = np.array([[-24], [0.2], [0.2]])
+C, grad = costFunction(test_w,X,Y)
+
+print('\nTest weights:',test_w.transpose())
 print('''Cost and Gradient  at test weights:
 Expected cost (approx.): 0.218
 Computed:''',C)
 print('''Expected gradient(approx.):
  [0.043     2.566   2.647]
-Computed:\n''',grad)
+Computed:\n''',grad.transpose())
 print('\n')
-#----------------
-asd = sco.fmin_bfgs(f=costFunction, x0=initial_w, args=(X,Y), disp=True, maxiter=400)
-print('\n')
-print(asd)
+#---------------- featrure normalization on X for the gradient descent alg. -------------------------------
+X,mean,std=featureNormalization(X)                   # feature normalization on X
+#---------------- Gradient descent alg. w. diffenrent learning rates---------------------------------------
+w = np.array([[0],[0],[0]])
+w, C_history = gradientDescent(X,Y,w,0.01)
+plt.plot(range(C_history.size), C_history, label= "learning r.:0.01 / iters.: 400")
+
+w = np.array([[0],[0],[0]])
+w, C_history = gradientDescent(X,Y,w,0.1)
+plt.plot(range(C_history.size), C_history, label= "learning r.:0.1 / iters.: 400")
+
+w = np.array([[0],[0],[0]])
+w, C_history = gradientDescent(X,Y,w,1)
+plt.plot(range(C_history.size), C_history, label= "learning r.:1 / iters.: 400")
+plt.legend()
+plt.xlabel("Number of iterations")
+plt.ylabel("Cost function value")
+plt.show()
+
+print('''The cost function at found weights by the gradient descent alg.:
+Expected (approx): 0.203
+Computed: ''', C_history[-1])
+print('''Weights expected (approx.):
+[1.659 3.867 3.603]
+Weights computed:\n''', w.transpose())
+#---------------------- Plot the descision boundary --------------------------
+pos=(pos-mean[1:3])/std[1:3]
+neg=(neg-mean[1:3])/std[1:3]
+
+plt.scatter(pos[:,0],pos[:,1],c="g", marker="o",label="Admitted")
+plt.scatter(neg[:,0],neg[:,1],c="r",marker="x",label="Not admitted")
+x_value = np.array([np.min(X[:,1]),np.max(X[:1])])
+y_value = -(w[0]+w[1]*x_value)/w[2]
+plt.plot(x_value,y_value,"k")
+plt.xlabel("Exam 1 score")
+plt.ylabel("Exam 2 score")
+plt.legend(loc=0)
+plt.show()
+#-------------------- Making some predictions --------------------------------------
+prediction=predictionMaking(np.array([45,85]))
+print('''Expected result of the prediction with [45 , 85]:
+0.776291
+Calculated:\n''',prediction)
+#--------------------- Calculating the accuracy --------------------------------------
+print(calculateAccuracy(w,X,Y), '% accuracy (89 % expected)')
+
+
+
