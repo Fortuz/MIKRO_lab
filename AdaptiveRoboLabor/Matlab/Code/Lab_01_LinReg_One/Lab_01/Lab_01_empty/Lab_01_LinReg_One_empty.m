@@ -123,9 +123,17 @@ plot(w(1), w(2), 'rx', 'MarkerSize', 10, 'LineWidth', 2);
 %==============================================================
 %% Functions: 
 function C = computeCost(X,Y,w)
-   
+   m=length(Y);
+   C = (sum(((X*w)-Y).^2))/(2*m);
 end
 
 function w = gradientDescent(X, Y, w, learning_rate, num_iters)
-   
+   m=length(Y);
+   C_history=zeros(num_iters, 1);
+   for i = 1:num_iters
+       temp = w(1)-(learning_rate/m)*sum(X*w-Y);
+       w(2) = w(2)-(learning_rate/m)*sum((X*w-Y).*X(:, 2));
+       w(1) = temp;
+       C_history(i) = computeCost(X, Y, w);
+   end       
 end

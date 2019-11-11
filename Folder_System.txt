@@ -1,0 +1,47 @@
+MOGI github létrehozása a publikációk támogatására
+
+=============================================
+Formátumok tisztázása
+LateX, Word - PDF
+txt
+
+hozzáféréseket hogy lehet majd kezelni
+ki és honnan férhet hozzá, ki tud lekérdezni és mit
+
+Template:
+License
+Readme
+
+=============================================
+
+
+-# Szerver szabályzat, know how
+-# Hogy mûködik a gitezés, hogy érdemes használni
+--00_Templates
+# README
+# License
+--01_Papers
+? : témák vagy évek szerint
+--03_Projects
+----ProjectName
+----# README 1 oldal
+* ki csinálta
+* elérhetõsége
+* project state: Ongoing, Finished
+* projet rövis ismertetése 
+* project mappa felépítése
+* mire készült/mi lett belõle - szakdoga, diploma, TDK, stb...
+* milyen szoftverkörnyezet szükséges, legszükségesebb verziószámok
+----# .gitignore
+----# LICENCE - saját BMEs licence kitalálása mondjuk MIT License alapján
+------Code
+------# Project files -  Clean code, everything is commented
+------Doc
+------# Manualas
+------# How to use
+------# References, Papers, Link, so on
+--------Pictures (optional)
+--------# Measurement setup Photos, apart from the writen documents
+
+
+	
