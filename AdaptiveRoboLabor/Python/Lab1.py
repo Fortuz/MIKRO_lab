@@ -21,10 +21,7 @@ def gradientDescent(X,Y,w,learning_rate,num_iters):
         w=neww.copy()
         C_history[i] =computeCost(X,Y,w)
 
-    plt.plot(range(0,C_history.size),C_history)
-    plt.show()
-
-    return w
+    return w, C_history
 # ------- END OF THE USED FUNCTIONS DEFINITIONS ---------------
 #--------------------------------------------------------------
 #------------------ GETTING THE DATA --------------------------
@@ -48,7 +45,10 @@ print('Y értékei: \n', Y)
 print('Az adatok száma: ', m)
 '''
 #------------------- DATA VIZUALIZATION -------------------------
-plt.plot(X,Y,'o')                           # kiplottoljuk a kezdeti értékeket
+plt.plot(X,Y,'o', c= "g")                           # kiplottoljuk a kezdeti értékeket
+plt.title("Training data")
+plt.xlabel("Population of a city in 10 000s")
+plt.ylabel("Profit in $10 000s ")
 plt.show()
 #-------------------- INITIALIZATION ----------------------------
 X=np.column_stack((np.ones(m),X))           # hozzáfűzünk egy 1-esekből álló oszlopot
@@ -71,11 +71,22 @@ print('''\n\tWith Theta (w) = [-1;2]
 print('''\nGradient descent:
 \tWeights expected (approx.): 
 \t[-3.6303] [1.1664]''')
-w=gradientDescent(X,Y,w,learning_rate,epochs)
+w,C_history=gradientDescent(X,Y,w,learning_rate,epochs)
+
+plt.plot(range(0, C_history.size), C_history)
+plt.title("Gradient descent algorithms effect through the iterations")
+plt.xlabel("Iterations")
+plt.ylabel("Cost function value")
+plt.show()
+
 print('\tWeights calculated:\n   ',w[0],w[1])
 #------------------ Plot the linear fit -------------------------
-plt.plot((X[:,1]).reshape(97,1),Y,'o')
-plt.plot((X[:,1]).reshape(97,1),X@w,'-',)
+plt.plot((X[:,1]).reshape(97,1),Y,'o', label = "Training data")
+plt.plot((X[:,1]).reshape(97,1),X@w,'-',label = "Linear regression")
+plt.xlabel("Population of a city in 10 000s")
+plt.ylabel("Profit in $10 000s ")
+plt.title("Linear regression and the training data")
+plt.legend()
 plt.show()
 #--------- Prediction for values 35 000 and 75 000 pop.----------
 Prediction1 = (np.array([[1], [35000]])).reshape(1,2)@w
@@ -97,9 +108,15 @@ fig= plt.figure()
 ax=plt.axes(projection='3d')
 x, y = np.meshgrid(w0_vals, w1_vals)
 surf = ax.plot_surface(x, y, C_vals, cmap=cm.coolwarm,linewidth=0, antialiased=False)
+plt.title("Surface plot of the Cost function")
+plt.xlabel("w0")
+plt.ylabel("w1")
 plt.show()
 #----------------------- Contour plot -------------------------------
 plt.contour(w0_vals,w1_vals,C_vals,np.logspace(-2,3,20))
 plt.plot(w[0],w[1],'x')
+plt.title("Contour plot of C_vals in logarithmic scale")
+plt.xlabel("w0")
+plt.ylabel("w1")
 plt.show()
 #--------------------------------------------------------------------
