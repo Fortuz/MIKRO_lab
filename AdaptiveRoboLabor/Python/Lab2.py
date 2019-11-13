@@ -1,6 +1,5 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import time
 # -------- USED FUNCTIONS DEFINITIONS -------------------------
 def featureNormalize(X):
     X_norm=X.copy()
@@ -75,6 +74,9 @@ w,C_history= gradientDescentMulti(X,Y,w,lr,epochs)
 print('Weights computed from gradient descent:\n', w)
 
 plt.plot(range(0,epochs),C_history)
+plt.title("Gradient descent algorithms effect through the iterations",pad= 20)
+plt.xlabel("Iterations")
+plt.ylabel("Cost function value")
 plt.show()
 
 FEET = 1650
