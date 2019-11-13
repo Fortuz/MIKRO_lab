@@ -17,6 +17,9 @@ def plotData(X,Y):
 
     plt.scatter(pos[:, 0], pos[:, 1], c="g", marker="o", label="OK")
     plt.scatter(neg[:, 0], neg[:, 1], c="r", marker="x", label="Not OK")
+    plt.title("Training data")
+    plt.xlabel("Test 1")
+    plt.ylabel("Test 2")
     plt.legend()
     plt.show()
 
@@ -109,6 +112,9 @@ w, C_history = gradientDescent(X,Y,init_w,1,800,0.2)
 print('\nRegularized weight:\n',w)
 #---------------------- Plot C_history -------------------------------
 plt.plot(C_history,label = "alpha = 1 / num_iters = 800 / Lambda=0.2")
+plt.title("Cost function trough the iterations")
+plt.xlabel("Iterations")
+plt.ylabel("Cost function value")
 plt.legend()
 plt.show()
 #---------------------- Plot decision --------------------------------
@@ -124,6 +130,7 @@ for i in range(len(u_vals)):
         z[i,j] = mapFeaturePlot(u_vals[i],v_vals[j]) @ w
 
 plt.contour(u_vals,v_vals,z.transpose(),0)
+plt.title("Decision boundary and the training data")
 plt.xlabel("Exam 1 score")
 plt.ylabel("Exam 2 score")
 plt.legend(loc=0)
