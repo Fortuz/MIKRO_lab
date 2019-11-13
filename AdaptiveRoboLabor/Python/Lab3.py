@@ -16,9 +16,10 @@ def plotData(X,Y):
 
     plt.scatter(neg[:,0],neg[:,1],marker='x',c="r", label="Not admitted")
     plt.scatter(pos[:,0],pos[:,1],marker='o',c="g", label="Admitted")
-    plt.legend(['Not admitted','Admitted'])
+    plt.title("Training data")
     plt.xlabel("Exam 1 score")
     plt.ylabel("Exam 2 score")
+    plt.legend(loc='lower left')
     plt.show()
 
     return pos, neg
@@ -139,9 +140,10 @@ plt.plot(range(C_history.size), C_history, label= "learning r.:0.1 / iters.: 400
 w = np.array([[0],[0],[0]])
 w, C_history = gradientDescent(X,Y,w,1)
 plt.plot(range(C_history.size), C_history, label= "learning r.:1 / iters.: 400")
-plt.legend()
+plt.title("Effect of the different constants on the cost function")
 plt.xlabel("Number of iterations")
 plt.ylabel("Cost function value")
+plt.legend()
 plt.show()
 
 print('''The cost function at found weights by the gradient descent alg.:
@@ -159,6 +161,7 @@ plt.scatter(neg[:,0],neg[:,1],c="r",marker="x",label="Not admitted")
 x_value = np.array([np.min(X[:,1]),np.max(X[:1])])
 y_value = -(w[0]+w[1]*x_value)/w[2]
 plt.plot(x_value,y_value,"k")
+plt.title("Decision boundary and the training daty")
 plt.xlabel("Exam 1 score")
 plt.ylabel("Exam 2 score")
 plt.legend(loc=0)
