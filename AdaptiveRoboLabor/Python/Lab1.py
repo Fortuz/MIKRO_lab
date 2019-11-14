@@ -75,7 +75,7 @@ w,C_history=gradientDescent(X,Y,w,learning_rate,epochs)
 
 plt.plot(range(0, C_history.size), C_history)
 plt.title("Gradient descent algorithms effect through the iterations")
-plt.xlabel("Iterations")
+plt.xlabel("Iteration")
 plt.ylabel("Cost function value")
 plt.show()
 

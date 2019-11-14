@@ -53,7 +53,6 @@ def costFunctionReg(w,X,Y,Lambda=1):
     return C,grad
 
 def gradientDescent(X,Y,w,alpha,num_iters,Lambda):
-    m = len(Y)
     C_history = []
 
     for i in range(num_iters):
@@ -113,7 +112,7 @@ print('\nRegularized weight:\n',w)
 #---------------------- Plot C_history -------------------------------
 plt.plot(C_history,label = "alpha = 1 / num_iters = 800 / Lambda=0.2")
 plt.title("Cost function trough the iterations")
-plt.xlabel("Iterations")
+plt.xlabel("Iteration")
 plt.ylabel("Cost function value")
 plt.legend()
 plt.show()

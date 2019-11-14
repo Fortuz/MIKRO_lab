@@ -75,7 +75,7 @@ print('Weights computed from gradient descent:\n', w)
 
 plt.plot(range(0,epochs),C_history)
 plt.title("Gradient descent algorithms effect through the iterations",pad= 20)
-plt.xlabel("Iterations")
+plt.xlabel("Iteration")
 plt.ylabel("Cost function value")
 plt.show()
 
