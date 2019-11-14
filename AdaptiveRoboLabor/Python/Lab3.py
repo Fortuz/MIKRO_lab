@@ -161,7 +161,7 @@ plt.scatter(neg[:,0],neg[:,1],c="r",marker="x",label="Not admitted")
 x_value = np.array([np.min(X[:,1]),np.max(X[:1])])
 y_value = -(w[0]+w[1]*x_value)/w[2]
 plt.plot(x_value,y_value,"k")
-plt.title("Decision boundary and the training daty")
+plt.title("Decision boundary and the training data")
 plt.xlabel("Exam 1 score")
 plt.ylabel("Exam 2 score")
 plt.legend(loc=0)
