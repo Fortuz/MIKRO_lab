@@ -48,6 +48,13 @@ def oneVsAll(X, Y, num_labels, Lambda):
 
     return np.array(w_all).reshape(num_labels, n + 1), C_all
 
+def predictionOneVsAll(w_all,X):
+    m = X.shape[0]
+    X = np.hstack((np.ones((m,1)),X))
+
+    predictions = X @ w_all.T
+    return np.argmax(predictions,axis=1)+1
+
 
 
 # ------- END OF THE USED FUNCTIONS DEFINITIONS ---------------
@@ -88,8 +95,10 @@ plt.title("Cost function using Gradient Descent")
 plt.xlabel("Iteration")
 plt.ylabel("C_all value")
 plt.show()
-
-
+#-----------------------
+pred = predictionOneVsAll(w_all, X)
+acc = sum(pred[:,np.newaxis]==Y)[0]/5000*100
+print("Training Set Accuracy:", acc,"%")
 
 
 
