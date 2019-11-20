@@ -1,10 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
-import pandas as pd
 from scipy.io import loadmat
 
-# itt bevezetjük a pandast hogy legyen benne újabb érdekesség
 # -------- USED FUNCTIONS DEFINITIONS -------------------------
 def sigmoid(z):
     return 1/(1+np.exp(-z))
@@ -63,6 +61,8 @@ def predictionOneVsAll(w_all,X):
 mat = loadmat("Lab5data.mat")
 X = mat["X"]
 Y = mat["y"]
+m = X.shape[0]
+# ide nem árthat kiiratni amm, hogy lássák mi a felosztás és mi alapján rendezzük később
 print('''Shape of the dataset in order X and Y:
 ''',X.shape,'\n',Y.shape,'\n')
 
@@ -70,7 +70,7 @@ print("Now showing some random data from the dataset ...")
 fig, axis = plt.subplots(10,10,figsize = (8,8))
 for i in range(10):
     for j in range(10):
-        axis[i,j].imshow(X[np.random.randint(0,5001),:].reshape(20,20,order="F"),cmap="hot")
+        axis[i,j].imshow(X[np.random.randint(0,m+1),:].reshape(20,20,order="F"),cmap="hot")
         axis[i,j].axis("off")
 plt.show()
 #-------------- gradient ------------------------------------
