@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
-import matplotlib.image as mpimg
 from scipy.io import loadmat
+import keyboard
 # -------- USED FUNCTIONS DEFINITIONS -------------------------
 def sigmoid(z):
     return 1/(1+np.exp(-z))
@@ -22,10 +22,6 @@ def accuracy(pred,Y):
 
 
 #-------- USED FUNCTIONS DEFINITIONS END -------------------------
-#------- SETTING UP SOME PARAMETRES ------------------------------
-input_layer_size = 400
-hidden_layer_size = 25
-num_labels = 10
 #------------- Loading data --------------------------------------
 data = loadmat("Lab6data.mat")
 # ide nem árthat kiiratni amm, hogy lássák mi a felosztás és mi alapján rendezzük később
@@ -47,11 +43,31 @@ plt.show()
 data = loadmat("Lab6weights.mat")
 w1 = data["Theta1"]
 w2 = data["Theta2"]
+del data
 print('''Shape of the weights in order 1 and 2:
 ''',w1.shape,'\n',w2.shape,'\n')
 
 pred = predict(w1,w2,X)
 print('\nTraining set Accuracy: ', accuracy(pred,Y), ' %')
+data_order = np.random.permutation(m)
+
+global stopit
+stopit=False
+
+def breakloop():
+    global stopit
+    stopit=True
+
+keyboard.add_hotkey('ctrl+q',breakloop)
+
+for i in data_order:
+    if stopit:
+        break
+    print('Showing You a:',pred[i]%10, 'the prediction was:',pred[i], ',Y value was:',Y[i])
+    fig = plt.figure(figsize=(2,2))
+    plt.imshow(X[i,:].reshape(20,20).T)
+    plt.show()
+
 
 
 
