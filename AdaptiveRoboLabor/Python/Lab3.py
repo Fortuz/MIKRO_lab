@@ -127,18 +127,18 @@ print('''Expected gradient(approx.):
 Computed:\n''',grad.transpose())
 print('\n')
 #---------------- featrure normalization on X for the gradient descent alg. -------------------------------
-X,mean,std=featureNormalization(X)                   # feature normalization on X
+X_norm,mean,std=featureNormalization(X)                   # feature normalization on X
 #---------------- Gradient descent alg. w. diffenrent learning rates---------------------------------------
 w = np.array([[0],[0],[0]])
-w, C_history = gradientDescent(X,Y,w,0.01)
+w, C_history = gradientDescent(X_norm,Y,w,0.01)
 plt.plot(range(C_history.size), C_history, label= "learning r.:0.01 / iters.: 400")
 
 w = np.array([[0],[0],[0]])
-w, C_history = gradientDescent(X,Y,w,0.1)
+w, C_history = gradientDescent(X_norm,Y,w,0.1)
 plt.plot(range(C_history.size), C_history, label= "learning r.:0.1 / iters.: 400")
 
 w = np.array([[0],[0],[0]])
-w, C_history = gradientDescent(X,Y,w,1)
+w, C_history = gradientDescent(X_norm,Y,w,1)
 plt.plot(range(C_history.size), C_history, label= "learning r.:1 / iters.: 400")
 plt.title("Effect of the different constants on the cost function")
 plt.xlabel("Iteration")
@@ -158,7 +158,7 @@ neg=(neg-mean[1:3])/std[1:3]
 
 plt.scatter(pos[:,0],pos[:,1],c="g", marker="o",label="Admitted")
 plt.scatter(neg[:,0],neg[:,1],c="r",marker="x",label="Not admitted")
-x_value = np.array([np.min(X[:,1]),np.max(X[:1])])
+x_value = np.array([np.min(X_norm[:,1]),np.max(X_norm[:1])])
 y_value = -(w[0]+w[1]*x_value)/w[2]
 plt.plot(x_value,y_value,"k")
 plt.title("Decision boundary and the training data")
@@ -172,7 +172,7 @@ print('''Expected result of the prediction with [45 , 85]:
 0.776291
 Calculated:\n''',prediction)
 #--------------------- Calculating the accuracy --------------------------------------
-print(calculateAccuracy(w,X,Y), '% accuracy (89 % expected)')
+print(calculateAccuracy(w,X_norm,Y), '% accuracy (89 % expected)')
 
 
 

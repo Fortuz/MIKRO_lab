@@ -63,19 +63,19 @@ print('Y értékei:\n', Y)
 print('Adatok száma: ', m)
 '''
 print('Normalizeing X vector ...')
-X,avg,sigma = featureNormalize(X)
-X=np.column_stack((np.ones(m),X))
+X_norm,avg,sigma = featureNormalize(X)
+X_norm=np.column_stack((np.ones(m),X_norm))
+
 print('Running gradient descent ...')
 lr = 0.01
 epochs = 400
 w=np.zeros((3,1))
-
-w,C_history= gradientDescentMulti(X,Y,w,lr,epochs)
+w,C_history= gradientDescentMulti(X_norm,Y,w,lr,epochs)
 print('Weights computed from gradient descent:\n', w)
 
 plt.plot(range(0,epochs),C_history)
 plt.title("Gradient descent algorithms effect through the iterations",pad= 20)
-plt.xlabel("Iteration")
+plt.xlabel("Iterations")
 plt.ylabel("Cost function value")
 plt.show()
 

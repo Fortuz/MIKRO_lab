@@ -60,11 +60,11 @@ learning_rate=0.01
 #----------------- TEST with some data ----------------------------
 C=computeCost(X,Y,np.array([[0],[0]]).reshape((2,1)))
 print('''Testing the cost function (Error function):
-\tWith Theta (w) = [0;0]
+\tWith weights w = [0;0]
 \tExpected value (approx.) = 32.07
 \tCost computed = ''',C)
 C=computeCost(X,Y,np.array([[-1],[2]]))
-print('''\n\tWith Theta (w) = [-1;2]
+print('''\n\tWith weights w = [-1;2]
 \tExpected value (approx.) = 54.24
 \tCost computed = ''',C)
 #----------------- Gradient method -----------------------------
@@ -72,6 +72,7 @@ print('''\nGradient descent:
 \tWeights expected (approx.): 
 \t[-3.6303] [1.1664]''')
 w,C_history=gradientDescent(X,Y,w,learning_rate,epochs)
+print('\tWeights calculated:\n   ',w[0],w[1])
 
 plt.plot(range(0, C_history.size), C_history)
 plt.title("Gradient descent algorithms effect through the iterations")
@@ -79,7 +80,7 @@ plt.xlabel("Iteration")
 plt.ylabel("Cost function value")
 plt.show()
 
-print('\tWeights calculated:\n   ',w[0],w[1])
+
 #------------------ Plot the linear fit -------------------------
 plt.plot((X[:,1]).reshape(97,1),Y,'o', label = "Training data")
 plt.plot((X[:,1]).reshape(97,1),X@w,'-',label = "Linear regression")
@@ -88,7 +89,7 @@ plt.ylabel("Profit in $10 000s ")
 plt.title("Linear regression and the training data")
 plt.legend()
 plt.show()
-#--------- Prediction for values 35 000 and 75 000 pop.----------
+#--------- Prediction for population values 35 000 and 75 000 pop.----------
 Prediction1 = (np.array([[1], [35000]])).reshape(1,2)@w
 Prediction2 = (np.array([[1], [75000]])).reshape(1,2)@w
 print('\nPrediction for 35 000:\n',Prediction1)
