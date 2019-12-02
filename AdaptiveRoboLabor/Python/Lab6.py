@@ -64,6 +64,7 @@ for i in data_order:
     if stopit:
         break
     print('Showing You a:',pred[i]%10, 'the prediction was:',pred[i], ',Y value was:',Y[i])
+    print('With CTRL+q You can stop anytime')
     fig = plt.figure(figsize=(2,2))
     plt.imshow(X[i,:].reshape(20,20).T)
     plt.show()
