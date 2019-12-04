@@ -103,13 +103,3 @@ plt.show()
 # ---------------------------- Train Curve for Linear Regression ---------------
 Lambda = 0
 asd = learningCurve(X,Y,X_val,Y_val,Lambda)
-
-
-
-
-
-
-
-
-
-

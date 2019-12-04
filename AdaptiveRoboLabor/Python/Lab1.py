@@ -121,3 +121,8 @@ plt.xlabel("w0")
 plt.ylabel("w1")
 plt.show()
 #--------------------------------------------------------------------
+import pandas as pd
+
+data = pd.read_csv('Lab1data.txt')
+print(data)
+
