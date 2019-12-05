@@ -57,14 +57,15 @@ Y=np.array(Y)
 m=Y.size
 Y=Y.reshape(m,1)
 del TEMP
-'''
+
 print('X értékei:\n', X)
 print('Y értékei:\n', Y)
 print('Adatok száma: ', m)
-'''
-print('Normalizeing X vector ...')
+
+print('Normalizing X vector ...')
 X_norm,avg,sigma = featureNormalize(X)
 X_norm=np.column_stack((np.ones(m),X_norm))
+
 
 print('Running gradient descent ...')
 lr = 0.01
