@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="35dc89c2-bde8-474a-8411-f0099a47f6b6" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/L03 - Logistic Regression.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/L03 - Logistic Regression.ipynb" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="1UWb5iwffrFA2aLeydqT33gE2dI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../Python" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="35dc89c2-bde8-474a-8411-f0099a47f6b6" name="Default Changelist" comment="" />
+      <created>1575475116270</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575475116270</updated>
+    </task>
+    <task id="LOCAL-00001" summary="lab1 notebook extended edition done mehet a rewiew rá">
+      <created>1575477302564</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1575477302564</updated>
+    </task>
+    <task id="LOCAL-00002" summary="lab1 notebook extended edition done mehet a rewiew rá">
+      <created>1575477496724</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1575477496724</updated>
+    </task>
+    <task id="LOCAL-00003" summary="lab1 notebook extended edition done mehet a rewiew rá">
+      <created>1575548128372</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1575548128372</updated>
+    </task>
+    <task id="LOCAL-00004" summary="L02 is kész... szerintem reviewelhető">
+      <created>1575558510251</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1575558510251</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="lab1 notebook extended edition done mehet a rewiew rá" />
+    <MESSAGE value="L02 is kész... szerintem reviewelhető" />
+    <option name="LAST_COMMIT_MESSAGE" value="L02 is kész... szerintem reviewelhető" />
+  </component>
+</project>
