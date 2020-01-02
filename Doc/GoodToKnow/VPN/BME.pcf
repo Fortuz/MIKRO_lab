@@ -1,0 +1,11 @@
+[main]
+Description=BMENET
+Host=ravpn.bme.hu
+AuthType=1
+GroupName=BME
+GroupPwd=WolfgangAmadeus
+SaveUserPassword=0
+EnableMSLogon=0
+EnableNat=1
+TunnelingMode=0
+EnableLocalLAN=1
