@@ -1,0 +1,9 @@
+Ethorobotika
+
+A robotok napjainkban nem csak az iparban terjednek, hanem egyre jobban a mindennapjaink 
+részeseivé válnak. A robotokra nem csak, mint cél eszközökre, hanem mint társaságra vagy háziállatra
+gondolunk. A társadalmi elfogadáshoz pedig az kell, hogy a robotok bárkivel képesek legyen kommunikálni 
+programozói ismeretek nélkül is. A problémára megoldást jelenthet, ha a robotokba magasabb szintû 
+viselkedésmodellt implementálunk. Laborunk egyik fõ kutatási irányvonala az emeber robot kommunikáció.
+Fókuszpontba helyezve a robotok viselkedésének kialakítását állati viselkedésminták alapján. Eszközkészletünk
+folyamatosan bõvül új robotokkal és reményeink szerint egyre több hallgató bevonására kerül sor a kutatásink során.  
