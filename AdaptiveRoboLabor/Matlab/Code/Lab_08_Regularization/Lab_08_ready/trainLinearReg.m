@@ -12,6 +12,6 @@ costFunction = @(t) linearRegCostFunction(X, y, t, lambda);
 options = optimset('MaxIter', 200, 'GradObj', 'on');
 
 % Minimize using fmincg
-w = fmincg(costFunction, init_w, options);
+w = fmincg(costFunction, init_w, options)
 
 end
