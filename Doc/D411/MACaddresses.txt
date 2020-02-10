@@ -17,3 +17,59 @@ B6 - B8:27:EB:8D:F1:54
 Waffle wlan MAC
 W1 - B8:27:EB:D7:62:DF
 W2 - B8:27:EB:10:8B:DC
+
+host d411pc01 
+  hardware ethernet F4:6D:04:EE:D0:F2
+  fixed-address 10.0.0.26
+
+host d411pc02 
+  hardware ethernet F4:6D:04:EE:EF:05
+  fixed-address 10.0.0.25
+
+host d411pc03 
+  hardware ethernet F4:6D:04:EE:E9:DE
+  fixed-address 10.0.0.24
+
+host d411pc04 
+  hardware ethernet F4:6D:04:EE:E6:B1
+  fixed-address 10.0.0.23
+
+host d411pc05 
+  hardware ethernet F4:6D:04:EE:EF:07
+  fixed-address 10.0.0.22
+
+host d411pc06 
+  hardware ethernet F4:6D:04:EE:D0:FA
+  fixed-address 10.0.0.21
+
+host d411b01 
+  hardware ethernet B8:27:EB:30:68:5A
+  fixed-address 10.0.0.20
+
+host d411b02 
+  hardware ethernet B8:27:EB:98:11:88
+  fixed-address 10.0.0.19
+
+host d411b03 
+  hardware ethernet B8:27:EB:0F:9E:9B
+  fixed-address 10.0.0.18
+
+host d411b04 
+  hardware ethernet B8:27:EB:DA:97:E5
+  fixed-address 10.0.0.17
+
+host d411b05 
+  hardware ethernet B8:27:EB:E1:E1:94
+  fixed-address 10.0.0.16
+
+host d411b06 
+  hardware ethernet B8:27:EB:8D:F1:54
+  fixed-address 10.0.0.15
+
+host d411w01 
+  hardware ethernet B8:27:EB:D7:62:DF
+  fixed-address 10.0.0.12
+
+host d411w02 
+  hardware ethernet B8:27:EB:10:8B:DC
+  fixed-address 10.0.0.11
