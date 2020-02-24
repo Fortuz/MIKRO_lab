@@ -1,0 +1,8 @@
+{
+--Title--
+"Boci, boci, tarka"
+--Tunes--
+"do mi do mi do so; do mi do mi so so; DO ti la so fa la so fa mi re do do"
+--Tempo--
+"ti ti ti ti ta ta; ti ti ti ti ta ta; ti ti ti ti ta ta ti ti ti ti ta ta"
+}
