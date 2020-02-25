@@ -3,7 +3,7 @@ from kivy.uix.camera import Camera
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.button import Button
 
-class CameraExample(App):
+class DeepMusic(App):
     def build(self):
         layout = BoxLayout(orientation='vertical')
 
@@ -34,4 +34,4 @@ class CameraExample(App):
 
 # Start the Camera App
 if __name__ == '__main__':
-     CameraExample().run()  
+     DeepMusic().run()  
