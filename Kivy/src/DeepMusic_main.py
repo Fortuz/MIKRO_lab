@@ -6,9 +6,23 @@ from kivy.uix.widget import Widget
 from kivy.properties import ObjectProperty # ID reference
 from kivy.graphics import Color, Rectangle # Background color
 from kivy.uix.image import Image   
-from kivy.properties import StringProperty   
+from kivy.properties import StringProperty
 from kivy.uix.popup import Popup     
 from kivy.uix.floatlayout import FloatLayout
+
+# Popup Windows (Settings, Help, Credit)    
+class SettingsPopup(FloatLayout):
+    def btn_SettingsApply(self):
+        print('SettingsApply')
+
+class HelpPopup(FloatLayout):
+    def btn_HelpBack(self):
+        print('HelpBack')
+
+class CreditsPopup(FloatLayout):
+    def btn_CreditBack(self):
+        print('CreditBack')
+
 
 # Main window class
 class MainWindow(Widget):
@@ -16,25 +30,22 @@ class MainWindow(Widget):
     
     def btn_settings(self):
         print('Settings')
-        show_SettingsPopup()
+        show = SettingsPopup()
+        popupWindow = Popup(title="Settings", content=show, size_hint=(None, None), size=(400,400))
+        popupWindow.open()
         
     def btn_help(self):
         print('Help')
-        show_HelpPopup()
+        show = HelpPopup()
+        popupWindow = Popup(title="Help", content=show, size_hint=(None, None), size=(400,400))
+        popupWindow.open()
 
     def btn_credits(self):
         print('Credits')
-        show_CreditsPopup()
-        
-# Popup Windows (Settings, Help, Credit)    
-class SettingsPopup(FloatLayout):
-    pass
-
-class HelpPopup(FloatLayout):
-    pass
-
-class CreditsPopup(FloatLayout):
-    pass
+        show = CreditsPopup()
+        popupWindow = Popup(title="Credits", content=show, size_hint=(None, None), size=(500,500))
+        popupWindow.open()
+    
 
 # Main App class        
 class DeepMusic(App):
@@ -46,21 +57,6 @@ class DeepMusic(App):
         '''            
         return layout
 
-# Popup window functions (Settings, Help, Credit)
-def show_SettingsPopup():
-    show = SettingsPopup()
-    popupWindow = Popup(title="Settings", content=show, size_hint=(None, None), size=(400,400))
-    popupWindow.open()
-
-def show_HelpPopup():
-    show = HelpPopup()
-    popupWindow = Popup(title="Help", content=show, size_hint=(None, None), size=(400,400))
-    popupWindow.open()
-    
-def show_CreditsPopup():
-    show = CreditsPopup()
-    popupWindow = Popup(title="Credits", content=show, size_hint=(None, None), size=(500,500))
-    popupWindow.open()
 
 # If this file is the main file launch the application  
 if __name__ == "__main__":

@@ -1,7 +1,5 @@
 <MainWindow>
     id: mainwindow
-    
-    
     canvas.before:
         Color:
             rgba: 1, 1, 1, .2
@@ -62,6 +60,7 @@
         text: "Apply"
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "y":0.1}
+        on_release: root.btn_Settings()
         
 <HelpPopup>
     Label:
@@ -73,8 +72,11 @@
         text: "Back"
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "y":0.1}
+        on_release: root.btn_HelpBack()
         
 <CreditsPopup>
+    creditpopup: creditpopup
+    id: creditpopup
     GridLayout:
         cols:1
         size_hint: 0.6, 1
@@ -122,3 +124,5 @@
                 color: 1, 1, 1, 1
                 pos_hint: {"x":0.3, "y":0.5}
                 size_hint: 0.4, 1
+                on_release: root.btn_CreitBack()
+                               
