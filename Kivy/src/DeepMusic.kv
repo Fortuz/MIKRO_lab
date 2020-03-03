@@ -1,0 +1,55 @@
+<MainWindow>
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, .2
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    
+            
+    FloatLayout: 
+        size: (300, 300)
+        Image:
+            source: root.image_src
+            pos_hint: {'center_y': 0.5, 'center_x': 0.5}
+            size_hint: 0.45, 0.48
+                  
+        Button:
+            id: settings
+            size: 1, 1
+            color: 0, 1, 0, 1
+            background_color: (0.157, 0.455, 0.753, 1)
+            text: "Settings"
+            pos: 5, root.height - self.height - 5
+            
+        Button:
+            id: help
+            size: 1, 1
+            color: 0, 1, 0, 1
+            background_color: (0.157, 0.455, 0.753, 1)
+            text: "Help"
+            pos: 5, root.height - (2*self.height) - (2*5)
+            
+        SmoothButton:
+            id: credits
+            size: 1, 1
+            border_radius: [36]
+            color: 0, 1, 0, 1
+            back_color: (0.157, 0.455, 0.753, 1.0)
+            text: "Credits"
+            pos: 5, root.height - (3*self.height) - (3*5)
+            
+<SmoothButton@Button>
+    background_color: (0,0,0,0)
+    background_normal: ''
+    size: 1, 1
+    back_color: (1,0,1,1)
+    border_radius: [18]
+    canvas.before:
+        Color:
+            rgba: self.back_color
+        RoundedRectangle:
+            size: self.size
+            pos: self.pos
+            radius: self.border_radius
+            
