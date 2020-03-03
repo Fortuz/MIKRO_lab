@@ -46,19 +46,20 @@ class DeepMusic(App):
         '''            
         return layout
 
+# Popup window functions (Settings, Help, Credit)
 def show_SettingsPopup():
     show = SettingsPopup()
-    popupWindow = Popup(title="Settings Popuop Window", content=show, size_hint=(None, None), size=(400,400))
+    popupWindow = Popup(title="Settings", content=show, size_hint=(None, None), size=(400,400))
     popupWindow.open()
 
 def show_HelpPopup():
     show = HelpPopup()
-    popupWindow = Popup(title="Help Popuop Window", content=show, size_hint=(None, None), size=(400,400))
+    popupWindow = Popup(title="Help", content=show, size_hint=(None, None), size=(400,400))
     popupWindow.open()
     
 def show_CreditsPopup():
     show = CreditsPopup()
-    popupWindow = Popup(title="Credits Popuop Window", content=show, size_hint=(None, None), size=(400,400))
+    popupWindow = Popup(title="Credits", content=show, size_hint=(None, None), size=(500,500))
     popupWindow.open()
 
 # If this file is the main file launch the application  

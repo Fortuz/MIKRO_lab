@@ -1,5 +1,7 @@
 <MainWindow>
     id: mainwindow
+    
+    
     canvas.before:
         Color:
             rgba: 1, 1, 1, .2
@@ -39,8 +41,8 @@
     background_normal: ''
     color: 0, 1, 0, 1
     size_hint: 0.075, 0.09
-    back_color_normal: (0.157, 0.455, 0.753, 1)
-    back_color_down:   (0.2, 0.5, 0.8, 1)
+    back_color_normal: (0.157, 0.455, 0.753, 0.5)
+    back_color_down:   (0.2, 0.5, 0.8, 0.5)
     border_radius: [36]
     canvas.before:
         Color:
@@ -56,8 +58,8 @@
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":1}
 
-    Button:
-        text: "You pressed the Settings button"
+    SmoothButton:
+        text: "Apply"
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "y":0.1}
         
@@ -67,18 +69,56 @@
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":1}
 
-    Button:
-        text: "You pressed the Help button"
+    SmoothButton:
+        text: "Back"
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "y":0.1}
         
 <CreditsPopup>
-    Label:
-        text: "This application was made by Gyöngyössy Natabara \n Nagy Balázs"
-        size_hint: 0.6, 0.2
+    GridLayout:
+        cols:1
+        size_hint: 0.6, 1
         pos_hint: {"x":0.2, "top":1}
-
-    Button:
-        text: "Back"
-        size_hint: 0.8, 0.2
-        pos_hint: {"x":0.1, "y":0.1}
+        
+        Label:
+            text: 'This application was made by'
+            color: 1, 1, 1, 1
+            size_hint: 0.6, 0.2
+        
+        Label:
+            text: 'Natabara Gyongyossy'
+            size_hint: 0.6, 0.1
+        
+        Label:
+            text: 'Balazs Nagy'
+            size_hint: 0.6, 0.1
+        
+        Label:
+            text: '&'
+            size_hint: 0.6, 0.1
+            
+        Label:
+            text: 'Mark Domonkos'
+            size_hint: 0.6, 0.1
+        
+        Label:
+            text: 'at the'
+            size_hint: 0.6, 0.2
+        
+        Label:
+            text: 'Budapest University of Technology and Economics'
+            size_hint: 0.6, 0.1
+            
+        Image:
+            source: 'pics/bme_logo.png'
+            size_hint: 1, 0.4
+            color: 1, 1, 1, 0.35
+            
+        FloatLayout:
+            size_hint: 0.6, 0.1
+            SmoothButton:
+                border_radius: [18,0,18,0]
+                text: "Back"
+                color: 1, 1, 1, 1
+                pos_hint: {"x":0.3, "y":0.5}
+                size_hint: 0.4, 1
