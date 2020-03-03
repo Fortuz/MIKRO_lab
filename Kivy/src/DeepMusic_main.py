@@ -11,12 +11,19 @@ from kivy.properties import StringProperty
 
 class MainWindow(Widget):
     image_src = StringProperty('pics/background_640x480.jpg')
-    pass
+    
+    def btn_settings(self):
+        print('Settings')
+        
+    def btn_help(self):
+        print('Help')
 
+    def btn_credits(self):
+        print('Credits')
+        
 class DeepMusic(App):
     def build(self):
         layout = MainWindow()
-        
         '''
         Refresh displayed picture:
         # layout.image_src = 'pics/do.png'
