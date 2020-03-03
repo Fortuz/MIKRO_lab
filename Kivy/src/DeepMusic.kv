@@ -12,24 +12,25 @@
         size: 640,480
         Image:
             source: root.image_src
-            pos_hint: {'top': 1}
+            allow_strech: True
+            pos: root.width/2 - self.width/2, root.height - self.height - 5
 
                   
         SmoothButton:
             id: settings
-            text: "Settings"
+            text: "S"
             pos: 5, root.height - self.height - 5
             on_press: root.btn_settings()
             
         SmoothButton:
             id: help
-            text: "Help"
+            text: "H"
             pos: 5, root.height - (2*self.height) - (2*5)
             on_press: root.btn_help()
             
         SmoothButton:
             id: credits
-            text: "Credits"
+            text: "C"
             pos: 5, root.height - (3*self.height) - (3*5)
             on_press: root.btn_credits()
             
@@ -37,7 +38,7 @@
     background_color: (0,0,0,0)
     background_normal: ''
     color: 0, 1, 0, 1
-    size_hint: 0.1, 0.1
+    size_hint: 0.075, 0.09
     back_color_normal: (0.157, 0.455, 0.753, 1)
     back_color_down:   (0.2, 0.5, 0.8, 1)
     border_radius: [36]
@@ -49,3 +50,35 @@
             pos: self.pos
             radius: self.border_radius
             
+<SettingsPopup>
+    Label:
+        text: "Settings Label"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    Button:
+        text: "You pressed the Settings button"
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1}
+        
+<HelpPopup>
+    Label:
+        text: "Help Label"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    Button:
+        text: "You pressed the Help button"
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1}
+        
+<CreditsPopup>
+    Label:
+        text: "This application was made by Gyöngyössy Natabara \n Nagy Balázs"
+        size_hint: 0.6, 0.2
+        pos_hint: {"x":0.2, "top":1}
+
+    Button:
+        text: "Back"
+        size_hint: 0.8, 0.2
+        pos_hint: {"x":0.1, "y":0.1}
