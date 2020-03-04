@@ -2,7 +2,7 @@
     id: mainwindow
     canvas.before:
         Color:
-            rgba: 1, 1, 1, .2
+            rgba: root.background_color
         Rectangle:
             pos: self.pos
             size: self.size
@@ -34,10 +34,10 @@
             pos: 5, root.height - (3*self.height) - (3*5)
             on_press: root.btn_credits()
             
-<SmoothButton@Button>
+<SmoothButton>
     background_color: (0,0,0,0)
     background_normal: ''
-    color: 0, 1, 0, 1
+    color: root.btn_text_color
     size_hint: 0.075, 0.09
     back_color_normal: (0.157, 0.455, 0.753, 0.5)
     back_color_down:   (0.2, 0.5, 0.8, 0.5)
@@ -53,6 +53,7 @@
 <SettingsPopup>
     Label:
         text: "Settings Label"
+        color: root.text_color
         size_hint: 0.6, 0.2
         pos_hint: {"x":0.2, "top":1}
 
@@ -60,19 +61,33 @@
         text: "Apply"
         size_hint: 0.8, 0.2
         pos_hint: {"x":0.1, "y":0.1}
-        on_release: root.btn_Settings()
+        on_release: root.btn_SettingsApply()
         
 <HelpPopup>
-    Label:
-        text: "Help Label"
-        size_hint: 0.6, 0.2
-        pos_hint: {"x":0.2, "top":1}
-
-    SmoothButton:
-        text: "Back"
-        size_hint: 0.8, 0.2
-        pos_hint: {"x":0.1, "y":0.1}
-        on_release: root.btn_HelpBack()
+    GridLayout:
+        cols:1
+        size_hint: 0.9, 1
+        pos_hint: {"x":0.05, "top":1}
+        canvas.before:
+            Color:
+                rgba: 1, 0, 0, .5
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        Label:
+            text: "Help Label"
+            color: root.text_color
+            size_hint: 0.6, 0.2
+            pos_hint: {"x":0.2, "top":1}
+        
+        FloatLayout:
+            size_hint: 0.6, 0.05
+            SmoothButton:
+                border_radius: [18,0,18,0]
+                text: "Back"
+                pos_hint: {"x":0.3, "y":0.1}
+                size_hint: 0.4, 1
+                on_release: root.btn_HelpBack()
         
 <CreditsPopup>
     creditpopup: creditpopup
@@ -84,31 +99,37 @@
         
         Label:
             text: 'This application was made by'
-            color: 1, 1, 1, 1
+            color: root.text_color
             size_hint: 0.6, 0.2
         
         Label:
             text: 'Natabara Gyongyossy'
+            color: root.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: 'Balazs Nagy'
+            color: root.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: '&'
+            color: root.text_color
             size_hint: 0.6, 0.1
             
         Label:
             text: 'Mark Domonkos'
+            color: root.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: 'at the'
+            color: root.text_color
             size_hint: 0.6, 0.2
         
         Label:
             text: 'Budapest University of Technology and Economics'
+            color: root.text_color
             size_hint: 0.6, 0.1
             
         Image:
@@ -121,8 +142,7 @@
             SmoothButton:
                 border_radius: [18,0,18,0]
                 text: "Back"
-                color: 1, 1, 1, 1
                 pos_hint: {"x":0.3, "y":0.5}
                 size_hint: 0.4, 1
-                on_release: root.btn_CreitBack()
+                on_release: root.btn_CreditBack()
                                
