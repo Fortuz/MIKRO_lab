@@ -4,22 +4,28 @@ from kivy.app import App
 from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.widget import Widget
-from kivy.properties import ObjectProperty # ID reference
+from kivy.properties import StringProperty, NumericProperty, ObjectProperty # ID reference
 from kivy.graphics import Color, Rectangle # Background color
 from kivy.uix.image import Image   
-from kivy.properties import StringProperty
 from kivy.uix.popup import Popup     
 from kivy.uix.floatlayout import FloatLayout
 
 class SmoothButton(Button):
-    btn_text_color = StringProperty(GlobalShared.BTN_TEXT_COLOR)
+    btn_text_color   = StringProperty(GlobalShared.BTN_TEXT_COLOR)
+    btn_normal       = ObjectProperty(GlobalShared.BTN_COLOR_NORMAL)
 
 # Popup Windows (Settings, Help, Credit)    
 class SettingsPopup(FloatLayout):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
     
+    # Callback for the checkbox 
+    def checkbox_click(self, instance, value): 
+        if value is True: 
+            print("Checkbox Checked") 
+        else: 
+            print("Checkbox Unchecked") 
+    
     def btn_SettingsApply(self):
-        print('SettingsApply')
         GlobalShared.POPUP_WINDOW.dismiss()
 
 
@@ -27,14 +33,12 @@ class HelpPopup(FloatLayout):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
     
     def btn_HelpBack(self):
-        print('HelpBack')
         GlobalShared.POPUP_WINDOW.dismiss()
 
 class CreditsPopup(FloatLayout):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
     
     def btn_CreditBack(self):
-        print('CreditBack')
         GlobalShared.POPUP_WINDOW.dismiss()
 
 
@@ -46,24 +50,20 @@ class MainWindow(Widget):
     btn_text_color = StringProperty(GlobalShared.BTN_TEXT_COLOR)
     
     def btn_settings(self):
-        print('Settings')
         show = SettingsPopup()
         GlobalShared.POPUP_WINDOW = Popup(title="Settings", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(400,400))
         GlobalShared.POPUP_WINDOW.open()
         
     def btn_help(self):
-        print('Help')
         show = HelpPopup()
         GlobalShared.POPUP_WINDOW = Popup(title="Help", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(400,400))
         GlobalShared.POPUP_WINDOW.open()
 
     def btn_credits(self):
-        print('Credits')
         show = CreditsPopup()
         GlobalShared.POPUP_WINDOW = Popup(title="Credits", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(500,500))
         GlobalShared.POPUP_WINDOW.open()
     
-
 # Main App class        
 class DeepMusic(App):
     def build(self):
