@@ -9,10 +9,14 @@ from kivy.graphics import Color, Rectangle # Background color
 from kivy.uix.image import Image   
 from kivy.uix.popup import Popup     
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.button import ButtonBehavior
 
 class SmoothButton(Button):
     btn_text_color   = StringProperty(GlobalShared.BTN_TEXT_COLOR)
     btn_normal       = ObjectProperty(GlobalShared.BTN_COLOR_NORMAL)
+
+class ImageButton(ButtonBehavior, Image):
+    pass
 
 # Popup Windows (Settings, Help, Credit)    
 class SettingsPopup(FloatLayout):

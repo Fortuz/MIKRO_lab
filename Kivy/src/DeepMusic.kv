@@ -10,8 +10,7 @@
             
     FloatLayout: 
         size: root.size
-        
-             
+          
         Image:
             source: root.image_src
             allow_stretch: True
@@ -26,27 +25,48 @@
                   
         SmoothButton:
             id: settings
-            text: "S"
             size: 40, 40
             size_hint: None, None
             pos: 5, root.height - self.height - 5
-            on_press: root.btn_settings()
+            back_color_normal: (0.753, 0.753, 0.753, 0.5)
+            back_color_down: (0.753, 0.753, 0.753, 0.2)
+            on_release: root.btn_settings()
+            Image:
+                source: 'pics/kivy_logo_settings2.png'
+                color: 1,1,1,0.7
+                y: self.parent.y
+                x: self.parent.x
+                size: 40, 40
             
         SmoothButton:
             id: help
-            text: "H"
             size: 40, 40
             size_hint: None, None
             pos: 5, root.height - (2*self.height) - (2*5)
-            on_press: root.btn_help()
+            back_color_normal: (0.753, 0.753, 0.753, 0.5)
+            back_color_down: (0.753, 0.753, 0.753, 0.2)
+            on_release: root.btn_help()
+            Image:
+                source: 'pics/kivy_logo_help.png'
+                color: 1,1,1,0.7
+                y: self.parent.y
+                x: self.parent.x
+                size: 40, 40
             
         SmoothButton:
             id: credits
-            text: "C"
             size: 40, 40
             size_hint: None, None
+            back_color_normal: (0.753, 0.753, 0.753, 0.5)
+            back_color_down: (0.753, 0.753, 0.753, 0.2)
             pos: 5, root.height - (3*self.height) - (3*5)
-            on_press: root.btn_credits()
+            on_release: root.btn_credits()
+            Image:
+                source: 'pics/kivy_logo_credits.png'
+                color: 1,1,1,0.7
+                y: self.parent.y
+                x: self.parent.x
+                size: 40, 40
             
 <SmoothButton>
     background_color: (0,0,0,0)
