@@ -9,26 +9,42 @@ from kivy.graphics import Color, Rectangle # Background color
 from kivy.uix.image import Image   
 from kivy.uix.popup import Popup     
 from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.button import ButtonBehavior
+from kivy.uix.boxlayout import BoxLayout  
+from kivy.uix.spinner import Spinner
 
 class SmoothButton(Button):
     btn_text_color   = StringProperty(GlobalShared.BTN_TEXT_COLOR)
     btn_normal       = ObjectProperty(GlobalShared.BTN_COLOR_NORMAL)
-
-class ImageButton(ButtonBehavior, Image):
-    pass
 
 # Popup Windows (Settings, Help, Credit)    
 class SettingsPopup(FloatLayout):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
     
     # Callback for the checkbox 
-    def checkbox_click(self, instance, value): 
+    def checkbox_Predict(self, instance, value): 
         if value is True: 
-            print("Checkbox Checked") 
+            print("Prediction enabled") 
         else: 
-            print("Checkbox Unchecked") 
+            print("Prediction disabled") 
+            
+    def checkbox_Tune(self, instance, value): 
+        if value is True: 
+            print("Tune help enabled") 
+        else: 
+            print("Tune help disabled")
+            
+    def checkbox_Rythm(self, instance, value): 
+        if value is True: 
+            print("Rythm help enabled") 
+        else: 
+            print("Rythm help disabled") 
+            
+    def slider_Volume(self, instance, value):
+        print('Volume', value)
     
+    def spinner_Instrument(self, value):
+        print('instrument', self.value)
+        
     def btn_SettingsApply(self):
         GlobalShared.POPUP_WINDOW.dismiss()
 
@@ -55,12 +71,12 @@ class MainWindow(Widget):
     
     def btn_settings(self):
         show = SettingsPopup()
-        GlobalShared.POPUP_WINDOW = Popup(title="Settings", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(400,400))
+        GlobalShared.POPUP_WINDOW = Popup(title="Settings", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(500,400))
         GlobalShared.POPUP_WINDOW.open()
         
     def btn_help(self):
         show = HelpPopup()
-        GlobalShared.POPUP_WINDOW = Popup(title="Help", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(400,400))
+        GlobalShared.POPUP_WINDOW = Popup(title="Help", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(750,420))
         GlobalShared.POPUP_WINDOW.open()
 
     def btn_credits(self):
