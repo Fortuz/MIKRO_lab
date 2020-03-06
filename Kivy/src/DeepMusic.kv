@@ -14,20 +14,6 @@
             pos: self.pos
             radius: self.border_radius
 
-<SliderWidget>
-    Slider: 
-        orientation: "horizontal"
-        min: 0
-        max: 100
-        value: 30
-        on_value:label2.text = str(int(self.value)) 
-          
-    Label: 
-        id: label2 
-        font_size: "30sp"
-        text: "30"
-        color: 0, 0, 1, 1
-
 <MainWindow>
     id: mainwindow
     canvas.before:
@@ -50,7 +36,7 @@
             height: self.parent.width/self.image_ratio
             size_hint: 0.9, 0.9
             pos: root.width/2 - self.width/2, root.height - self.height - 5
-
+            
         SmoothButton:
             id: settings
             size: 40, 40
@@ -97,6 +83,11 @@
                 size: 40, 40
             
 <SettingsPopup>
+    title: "Settings"
+    size_hint: None, None 
+    size: 500, 400
+    title_color: self.text_color
+    
     GridLayout:
         cols:1
         rows:2
@@ -111,39 +102,30 @@
             Label:
                 text: "Prediction feedback enable"
                 color: root.text_color
-                pos_hint: {"x":0.2, "top":1}
-                size_hint: 0.5, 0.1
                 
             CheckBox:
-                color:.294, .761, .623
+                color: root.cb_color
                 on_active: root.checkbox_Predict(self, self.active) 
-                pos_hint: {"x":0.2, "top":0.5}
-                size_hint: 1, 1
             
             Label:
                 text: "Tune help enable"
                 color: root.text_color
-                pos_hint: {"x":0.2, "top":1}
                 
             CheckBox:
-                color:.294, .761, .623
+                color: root.cb_color
                 on_active: root.checkbox_Tune(self, self.active) 
-                pos_hint: {"x":0.2, "top":0.5}
                 
             Label:
                 text: "Rythm help enable"
                 color: root.text_color
-                pos_hint: {"x":0.2, "top":1}
                 
             CheckBox:
-                color:.294, .761, .623
+                color: root.cb_color
                 on_active: root.checkbox_Rythm(self, self.active) 
-                pos_hint: {"x":0.2, "top":0.5}
                 
             Label:
                 text: "Volume"
                 color: root.text_color
-                pos_hint: {"x":0.2, "top":1}
                 
             Slider: 
                 orientation: "horizontal"
@@ -155,32 +137,42 @@
             Label:
                 text: "Instrument"
                 color: root.text_color
-                pos_hint: {"x":0.2, "top":1}
                 
-            Spinner:
-                text: 'Violin'
-                values: 'Violin', 'Flute'
-                on_value:
-                    print: "The spinner {} has text {}".format(self, self.value)
+            AnchorLayout:
+                anchor_x: 'center'
+                Spinner:
+                    size_hint: 0.5, 0.9
+                    text: "Violin"
+                    values: ["Violin", "Flute"]
+                    on_text: root.spinner_Instrument(self.text)
                 
             Label:
                 text: "Language"
                 color: root.text_color
-                pos_hint: {"x":0.2, "top":1}
                                     
-            CheckBox:
-                color:.294, .761, .623 
-                pos_hint: {"x":0.2, "top":0.5}
+            AnchorLayout:
+                anchor_x: 'center'
+                Spinner:
+                    size_hint: 0.5, 0.9
+                    text: 'English'
+                    values: 'English', 'Magyar'
+                    on_text: root.spinner_Language(self.text)
                 
         FloatLayout:
+            size_hint: 0.5, 0.5
             SmoothButton:
                 text: "Apply"
-                size_hint: 0.3, 0.3
+                size_hint: 0.3, 0.5
                 border_radius: [18,0,18,0]
-                pos_hint: {"center_x":0.5, "center_y":0.25}
+                pos_hint: {"center_x":0.5, "center_y":0.5}
                 on_release: root.btn_SettingsApply()
         
 <HelpPopup>
+    title: "Help"
+    title_color: self.text_color
+    size_hint: None, None
+    size: 750, 420
+    
     FloatLayout:
         id: parent
         size_hint: 0.9, 1
@@ -194,56 +186,52 @@
             size_hint_x: None
             width: self.parent.width
             height: self.parent.width/self.image_ratio
-            size_hint: 1 , 1
+            size_hint: 0.9 , 0.9
             pos_hint: {'center_y': 0.55, 'center_x': 0.5}
             
         Label:
             text: 'Upper tunes'
-            pos_hint: {'center_y': 0.9, 'center_x': 0.75}
+            pos_hint: {'center_y': 0.9, 'center_x': 0.725}
             
         Label:
             text: 'Lower tunes'
-            pos_hint: {'center_y': 0.5, 'center_x': 0.75}
+            pos_hint: {'center_y': 0.5, 'center_x': 0.725}
     
         Label:
             text: 'Rythm'
-            pos_hint: {'center_y': 0.9, 'center_x': 0.225}
+            pos_hint: {'center_y': 0.9, 'center_x': 0.25}
             
-        Label:
-            text: 'ti'
-            pos_hint: {'center_y': 0.83, 'center_x': 1}
+        GridLayout:
+            cols: 1
+            rows: 9
+            pos_hint: {'center_y': 0.53, 'center_x': 0.95}
+            size_hint_y: 0.70
+            
+            Label:
+                text: 'ti'
+            Label:
+                text: 'la'
+            Label:
+                text: 'so'
+            Label:
+                text: 'fa'
+            Label:
+                text: 'mi'
+            Label:
+                text: 're'
+            Label:
+                text: 'do'
         
-        Label:
-            text: 'la'
-            pos_hint: {'center_y': 0.73, 'center_x': 1}
+        GridLayout:
+            cols: 1
+            rows: 2
+            pos_hint: {'center_y': 0.55, 'center_x': 0.05}   
+            size_hint_y: 0.25
             
-        Label:
-            text: 'so'
-            pos_hint: {'center_y': 0.63, 'center_x': 1}
-        
-        Label:
-            text: 'fa'
-            pos_hint: {'center_y': 0.53, 'center_x': 1}
-        
-        Label:
-            text: 'mi'
-            pos_hint: {'center_y': 0.43, 'center_x': 1}
-        
-        Label:
-            text: 're'
-            pos_hint: {'center_y': 0.33, 'center_x': 1}
-            
-        Label:
-            text: 'do'
-            pos_hint: {'center_y': 0.23, 'center_x': 1}
-            
-        Label:
-            text: 'Stop'
-            pos_hint: {'center_y': 0.60, 'center_x': 0}
-            
-        Label:
-            text: 'Play'
-            pos_hint: {'center_y': 0.5, 'center_x': 0}
+            Label:
+                text: 'Stop' 
+            Label:
+                text: 'Play'
             
         FloatLayout:
             size_hint: 0.7, 0.05
@@ -256,17 +244,21 @@
                 on_release: root.btn_HelpBack()
         
 <CreditsPopup>
-    creditpopup: creditpopup
-    id: creditpopup
+    title: "Credits"
+    title_color: self.text_color
+    size_hint: None, None
+    size: 500, 500
+    
     GridLayout:
         cols:1
+        rows: 9
         size_hint: 0.6, 1
-        pos_hint: {"x":0.2, "top":1}
+        pos_hint: {"center_x":0.5, "top":1}
         
         Label:
             text: 'This application was made by'
             color: root.text_color
-            size_hint: 0.6, 0.2
+            size_hint: 0.6, 0.1
         
         Label:
             text: 'Natabara Gyongyossy'
@@ -291,24 +283,27 @@
         Label:
             text: 'at the'
             color: root.text_color
-            size_hint: 0.6, 0.2
+            size_hint: 0.6, 0.1
         
         Label:
             text: 'Budapest University of Technology and Economics'
             color: root.text_color
             size_hint: 0.6, 0.1
             
-        Image:
-            source: 'pics/bme_logo.png'
-            size_hint: 1, 0.4
-            color: 1, 1, 1, 0.35
+        AnchorLayout:
+            size_hint: 0.6, 0.3
+            pos_hint: {"center_x":0.5, "center_y":0.8}
+            Image:
+                source: 'pics/bme_logo.png'
+                size_hint_x: 0.6
+                color: 1, 1, 1, 0.35
             
         FloatLayout:
             size_hint: 0.6, 0.1
             SmoothButton:
                 border_radius: [18,0,18,0]
                 text: "Back"
-                pos_hint: {"x":0.3, "y":0.5}
-                size_hint: 0.4, 1
+                pos_hint: {"center_x":0.5, "center_y":0.7}
+                size_hint: 0.3, 1
                 on_release: root.btn_CreditBack()
                                

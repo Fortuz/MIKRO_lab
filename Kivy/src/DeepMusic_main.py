@@ -1,26 +1,28 @@
 import kivy
 import GlobalShared
-from kivy.app import App
-from kivy.uix.label import Label
-from kivy.uix.button import Button
-from kivy.uix.widget import Widget
-from kivy.properties import StringProperty, NumericProperty, ObjectProperty # ID reference
-from kivy.graphics import Color, Rectangle # Background color
-from kivy.uix.image import Image   
-from kivy.uix.popup import Popup     
-from kivy.uix.floatlayout import FloatLayout
-from kivy.uix.boxlayout import BoxLayout  
-from kivy.uix.spinner import Spinner
+from kivy.app              import App
+from kivy.uix.label        import Label
+from kivy.uix.button       import Button
+from kivy.uix.widget       import Widget
+from kivy.properties       import StringProperty
+from kivy.graphics         import Color, Rectangle
+from kivy.uix.image        import Image   
+from kivy.uix.popup        import Popup     
+from kivy.uix.floatlayout  import FloatLayout
+from kivy.uix.boxlayout    import BoxLayout  
+from kivy.uix.spinner      import Spinner
+from kivy.uix.anchorlayout import AnchorLayout
 
 class SmoothButton(Button):
     btn_text_color   = StringProperty(GlobalShared.BTN_TEXT_COLOR)
-    btn_normal       = ObjectProperty(GlobalShared.BTN_COLOR_NORMAL)
+    btn_normal       = StringProperty(GlobalShared.BTN_COLOR_NORMAL)
 
 # Popup Windows (Settings, Help, Credit)    
-class SettingsPopup(FloatLayout):
+class SettingsPopup(Popup):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
+    cb_color   = StringProperty(GlobalShared.CB_COLOR)
     
-    # Callback for the checkbox 
+    # Callback functions for the elements of settings window 
     def checkbox_Predict(self, instance, value): 
         if value is True: 
             print("Prediction enabled") 
@@ -42,48 +44,50 @@ class SettingsPopup(FloatLayout):
     def slider_Volume(self, instance, value):
         print('Volume', value)
     
-    def spinner_Instrument(self, value):
-        print('instrument', self.value)
+    def spinner_Instrument(self, text):
+        print('Instrument: ', text)
+            
+    def spinner_Language(self, text):
+        print('Language: ', text)
         
     def btn_SettingsApply(self):
-        GlobalShared.POPUP_WINDOW.dismiss()
+        self.dismiss()
 
 
-class HelpPopup(FloatLayout):
+class HelpPopup(Popup):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
-    
+        
     def btn_HelpBack(self):
-        GlobalShared.POPUP_WINDOW.dismiss()
-
-class CreditsPopup(FloatLayout):
+        self.dismiss()
+        
+class CreditsPopup(Popup):
     text_color = StringProperty(GlobalShared.TEXT_COLOR)
     
     def btn_CreditBack(self):
-        GlobalShared.POPUP_WINDOW.dismiss()
-
+        self.dismiss()
 
 # Main window class
 class MainWindow(Widget):
-    image_src = StringProperty('pics/background_640x480.jpg')
+    def __init__(self, **kwargs):
+        super(MainWindow, self).__init__(**kwargs)
+        self.settings_window = SettingsPopup()
+        self.help_window     = HelpPopup()
+        self.credits_window  = CreditsPopup()
+    
+    image_src        = StringProperty('pics/background_640x480.jpg')
     background_color = StringProperty(GlobalShared.BACKGROUND_COLOR)
-    text_color = StringProperty(GlobalShared.TEXT_COLOR)
-    btn_text_color = StringProperty(GlobalShared.BTN_TEXT_COLOR)
+    text_color       = StringProperty(GlobalShared.TEXT_COLOR)
+    btn_text_color   = StringProperty(GlobalShared.BTN_TEXT_COLOR)
     
     def btn_settings(self):
-        show = SettingsPopup()
-        GlobalShared.POPUP_WINDOW = Popup(title="Settings", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(500,400))
-        GlobalShared.POPUP_WINDOW.open()
+        self.settings_window.open()
         
     def btn_help(self):
-        show = HelpPopup()
-        GlobalShared.POPUP_WINDOW = Popup(title="Help", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(750,420))
-        GlobalShared.POPUP_WINDOW.open()
-
+        self.help_window.open()
+        
     def btn_credits(self):
-        show = CreditsPopup()
-        GlobalShared.POPUP_WINDOW = Popup(title="Credits", title_color=GlobalShared.TEXT_COLOR, content=show, size_hint=(None, None), size=(500,500))
-        GlobalShared.POPUP_WINDOW.open()
-    
+        self.credits_window.open()
+        
 # Main App class        
 class DeepMusic(App):
     def build(self):
@@ -92,8 +96,8 @@ class DeepMusic(App):
         '''
         Refresh displayed picture example:
         # layout.image_src = 'pics/do.png'
-        '''            
-        
+        '''      
+             
         return layout
 
 
