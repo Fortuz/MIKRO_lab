@@ -1,0 +1,16 @@
+{
+--Title--
+"Boci, boci, tarka"
+--Tunes--
+"do mi do mi do so; do mi do mi so so; DO ti la so fa la so fa mi re do do"
+--Rythm--
+"ti ti ti ti ta ta; ti ti ti ti ta ta; ti ti ti ti ta ta ti ti ti ti ta ta"
+}
+{
+--Title--
+"The Imperial March"
+--Tunes--
+"mi mi mi do so; mi do so mi"
+--Rythm--
+"ta ta ta ti ti; ta ti ti ta"
+}
