@@ -3,7 +3,6 @@ from kivy.app              import App
 from kivy.uix.label        import Label
 from kivy.uix.button       import Button
 from kivy.uix.widget       import Widget
-from kivy.properties       import StringProperty, ObjectProperty
 from kivy.graphics         import Color, Rectangle
 from kivy.uix.image        import Image   
 from kivy.uix.popup        import Popup     
@@ -17,38 +16,7 @@ class SmoothButton(Button):
     pass
 
 # Popup Windows (Settings, Help, Credit)    
-class SettingsPopup(Popup):
-    def __init__(self, **kwargs):
-        super(SettingsPopup, self).__init__(**kwargs)
-            
-    # Callback functions for the elements of settings window 
-    def checkbox_Predict(self, instance, value): 
-        if value is True: 
-            print("Prediction enabled") 
-        else: 
-            print("Prediction disabled") 
-            
-    def checkbox_Tune(self, instance, value): 
-        if value is True: 
-            print("Tune help enabled")
-        else: 
-            print("Tune help disabled")
-            
-    def checkbox_Rythm(self, instance, value): 
-        if value is True: 
-            print("Rythm help enabled") 
-        else: 
-            print("Rythm help disabled") 
-            
-    def slider_Volume(self, instance, value):
-        print('Volume', value)
-    
-    def spinner_Instrument(self, text):
-        print('Instrument: ', text)
-            
-    def spinner_Language(self, text):
-        print('Language: ', text)
-        
+class SettingsPopup(Popup):        
     def btn_SettingsApply(self):
         self.dismiss()
 
@@ -68,7 +36,7 @@ class MainWindow(Widget):
         self.settings_window = SettingsPopup()
         self.help_window     = HelpPopup()
         self.credits_window  = CreditsPopup()
-    
+        
     def btn_settings(self):
         self.settings_window.open()
         
@@ -106,11 +74,39 @@ class DeepMusic(App):
         '''      
              
         return self.layout
-
-
-    def printOne(self, *args):
-        print('App')
         
+    # Callback functions for the elements of settings window 
+    def checkbox_Predict(self, instance, value): 
+        if value is True: 
+            print("Prediction enabled") 
+        else: 
+            print("Prediction disabled") 
+            
+    def checkbox_Tune(self, instance, value): 
+        if value is True: 
+            print("Tune help enabled")
+            self.layout.tune_enable = (1, 1, 1, 1)
+        else:
+            print("Tune help disabled")
+            self.layout.tune_enable = (1, 1, 1, 0)
+            
+    def checkbox_Rythm(self, instance, value): 
+        if value is True: 
+            print("Rythm help enabled") 
+            self.layout.rythm_enable = (1, 1, 1, 1)
+        else: 
+            print("Rythm help disabled") 
+            self.layout.rythm_enable = (1, 1, 1, 0)
+            
+    def slider_Volume(self, instance, value):
+        print('Volume', value)
+    
+    def spinner_Instrument(self, text):
+        print('Instrument: ', text)
+            
+    def spinner_Language(self, text):
+        print('Language: ', text)
+            
 # If this file is the main file launch the application  
 if __name__ == "__main__":
     DeepMusic().run()

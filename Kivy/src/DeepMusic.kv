@@ -15,8 +15,10 @@
             radius: self.border_radius
 
 <MainWindow>
-    tunehelp: TuneHelp
-    id: mainwindow
+
+    tune_enable:  1, 1, 1, 0
+    rythm_enable: 1, 1, 1, 0
+    
     canvas.before:
         Color:
             rgba: app.background_color
@@ -84,8 +86,20 @@
                 size: 40, 40
             
         BoxLayout:
+            size: 150, 40
+            size_hint: None, None
+            pos: root.width - self.width - 5 , root.height - self.height - 5
+            Spinner:
+                text: 'None'
+                values: 'None', 'Boci, boci, tarka'
+       
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: 0.9, 0.2
+                    
             Image:
                 id: TuneHelp
+                color: root.tune_enable
                 source: app.image_src
                 allow_stretch: True
                 keep_ratio: True
@@ -96,6 +110,19 @@
                 size_hint: 0.9, 0.2
                 pos_hint: {'center_x':0.5, 'top_y':0}
             
+            Image:
+                id: RythmHelp
+                color: root.rythm_enable
+                source: app.image_src
+                allow_stretch: True
+                keep_ratio: True
+                size_hint_y: None
+                size_hint_x: None
+                width: self.parent.width
+                height: self.parent.width/self.image_ratio
+                size_hint: 0.9, 0.2
+                pos_hint: {'center_x':0.5, 'top_y':0}
+                
 <SettingsPopup>
     title: "Settings"
     size_hint: None, None 
@@ -119,7 +146,7 @@
                 
             CheckBox:
                 color: app.cb_color
-                on_active: root.checkbox_Predict(self, self.active) 
+                on_active: app.checkbox_Predict(self, self.active) 
             
             Label:
                 text: "Tune help enable"
@@ -128,17 +155,15 @@
             CheckBox:
                 color: app.cb_color
                 on_active: 
-                    root.checkbox_Tune(self, self.active) 
+                    app.checkbox_Tune(self, self.active) 
             Label:
                 text: "Rythm help enable"
                 color: app.text_color
                 
             CheckBox:
                 color: app.cb_color
-                on_active: 
-                    root.checkbox_Rythm(self, self.active) 
-                    app.printOne(self)
-                
+                on_active: app.checkbox_Rythm(self, self.active) 
+                    
             Label:
                 text: "Volume"
                 color: app.text_color
@@ -148,7 +173,7 @@
                 min: 0
                 max: 100
                 value: 50
-                on_value: root.slider_Volume(self, int(self.value))
+                on_value: app.slider_Volume(self, int(self.value))
     
             Label:
                 text: "Instrument"
@@ -160,7 +185,7 @@
                     size_hint: 0.5, 0.9
                     text: "Violin"
                     values: ["Violin", "Flute"]
-                    on_text: root.spinner_Instrument(self.text)
+                    on_text: app.spinner_Instrument(self.text)
                 
             Label:
                 text: "Language"
@@ -172,7 +197,7 @@
                     size_hint: 0.5, 0.9
                     text: 'English'
                     values: 'English', 'Magyar'
-                    on_text: root.spinner_Language(self.text)
+                    on_text: app.spinner_Language(self.text)
                 
         FloatLayout:
             size_hint: 0.5, 0.5
