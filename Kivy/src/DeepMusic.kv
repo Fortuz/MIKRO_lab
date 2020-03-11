@@ -15,9 +15,10 @@
             radius: self.border_radius
 
 <MainWindow>
-
     tune_enable:  1, 1, 1, 0
     rythm_enable: 1, 1, 1, 0
+    tune_display:  ['pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png'] 
+    rythm_display: ['pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png']
     
     canvas.before:
         Color:
@@ -95,36 +96,144 @@
                 background_color: 1,1,1,0.9
                 on_text: app.spinner_Song(self.text)
         
-        GridLayout:
-            cols: 1
-            rows: 2
-            size_hint: 0.9, 0.25
-            pos_hint: {'center_x':0.5, 'top_y':0}
-             
-            BoxLayout:
-                Image:
-                    id: TuneHelp
-                    color: root.tune_enable
-                    source: app.image_src
-                    allow_stretch: True
-                    keep_ratio: True
-                    size_hint_y: None
-                    size_hint_x: None
-                    width: self.parent.width
-                    height: self.parent.width/self.image_ratio
-                    size_hint: 1, 1
+        FloatLayout:
+            size_hint: 1, 0.2
+            
+            Button:
+                size_hint: 0.1, 1
+                text: "Prev"
                     
-            BoxLayout:
-                Image:
-                    color: root.rythm_enable
-                    source: app.image_src
-                    allow_stretch: True
-                    keep_ratio: True
-                    size_hint_y: None
-                    size_hint_x: None
-                    width: self.parent.width
-                    height: self.parent.width/self.image_ratio
+            GridLayout:
+                cols: 1
+                rows: 2
+                size_hint: 0.8, 1
+                pos_hint:{'center_x':0.5}
+                inLayout: None, 1
+                
+                BoxLayout:
                     size_hint: 1, 1
+                    pos: self.pos
+                    pos_hint:{'center_x':0.5}
+                    
+                    canvas.before:
+                        Color:
+                            rgba: root.rythm_enable
+                        Rectangle:
+                            size:self.size
+                            pos: self.pos
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[0]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:
+                        color: root.rythm_enable                    
+                        source: root.rythm_display[1]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[2]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.rythm_enable
+                        source: root.rythm_display[3]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[4]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:
+                        color: root.rythm_enable                    
+                        source: root.rythm_display[5]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[6]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:   
+                        color: root.rythm_enable                 
+                        source: root.rythm_display[7]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                BoxLayout:
+                    size_hint: 1, 1
+                    pos: self.pos
+                    pos_hint:{'center_x':0.5}
+                
+                    canvas.before:
+                        Color:
+                            rgba: root.tune_enable
+                        Rectangle:
+                            size:self.size
+                            pos: self.pos
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[0]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[1]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[2]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[3]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[4]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[5]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[6]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[7]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+            
+            Button:
+                size_hint: 0.1, 1
+                pos: root.width - self.width, 0
+                text: "Next"
+                on_release: app.btn_Next()
                     
 <SettingsPopup>
     title: "Settings"

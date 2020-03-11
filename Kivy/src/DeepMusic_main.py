@@ -10,6 +10,7 @@ from kivy.uix.floatlayout  import FloatLayout
 from kivy.uix.boxlayout    import BoxLayout  
 from kivy.uix.spinner      import Spinner
 from kivy.uix.anchorlayout import AnchorLayout
+from kivy.properties       import ObjectProperty
 
 class SmoothButton(Button):
     pass
@@ -30,6 +31,8 @@ class CreditsPopup(Popup):
 
 # Main window class
 class MainWindow(Widget):
+    lastryme = ObjectProperty(None)
+    
     def __init__(self, **kwargs):
         super(MainWindow, self).__init__(**kwargs)
         self.settings_window = SettingsPopup()
@@ -62,7 +65,7 @@ class DeepMusic(App):
         
         self.back_color_n_blue= (0.157, 0.455, 0.753, 0.5)
         self.back_color_d_blue= (0.157, 0.455, 0.753, 0.2)
-    
+        
         # Read kottak.txt and populate songs, tunes and rythm
         file = open('../src/conf/kottak.txt', mode = 'r', encoding = 'utf-8-sig')
         lines=file.read().splitlines() 
@@ -97,18 +100,18 @@ class DeepMusic(App):
     def checkbox_Tune(self, instance, value): 
         if value is True: 
             print("Tune help enabled")
-            self.layout.tune_enable = (1, 1, 1, 1)
+            self.layout.tune_enable = (0.9, 0.9, 0.9, 1)
         else:
             print("Tune help disabled")
-            self.layout.tune_enable = (1, 1, 1, 0)
+            self.layout.tune_enable = (0.9, 0.9, 0.9, 0)
             
     def checkbox_Rythm(self, instance, value): 
         if value is True: 
             print("Rythm help enabled") 
-            self.layout.rythm_enable = (1, 1, 1, 1)
+            self.layout.rythm_enable = (0.9, 0.9, 0.9, 1)
         else: 
             print("Rythm help disabled") 
-            self.layout.rythm_enable = (1, 1, 1, 0)
+            self.layout.rythm_enable = (0.9, 0.9, 0.9, 0)
             
     def slider_Volume(self, instance, value):
         print('Volume', value)
@@ -121,7 +124,13 @@ class DeepMusic(App):
         
     def spinner_Song(self, text):
         print('Song: ', text)
+        print(self.tunes[text])
             
+    def btn_Next(self):
+        print('Next')
+        self.layout.tune_display[0] = 'pics/fa.png'
+        self.layout.rythm_display[0] = 'pics/mi.png'
+         
 # If this file is the main file launch the application  
 if __name__ == "__main__":
     DeepMusic().run()
