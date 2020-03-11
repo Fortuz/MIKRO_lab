@@ -1,16 +1,16 @@
 {
 --Title--
-"Boci, boci, tarka"
+Boci, boci, tarka
 --Tunes--
-"do mi do mi do so; do mi do mi so so; DO ti la so fa la so fa mi re do do"
+do mi do mi do so pp do mi do mi so so pp DO ti la so fa la pp so fa mi re do do pp
 --Rythm--
-"ti ti ti ti ta ta; ti ti ti ti ta ta; ti ti ti ti ta ta ti ti ti ti ta ta"
+ti ti ti ti ta ta pp ti ti ti ti ta ta pp ti ti ti ti ta ta pp ti ti ti ti ta ta pp
 }
 {
 --Title--
-"The Imperial March"
+The Imperial March
 --Tunes--
-"mi mi mi do so; mi do so mi"
+mi mi mi do so mi do so mi pp ti ti ti DO so mi do so mi pp
 --Rythm--
-"ta ta ta ti ti; ta ti ti ta"
+ta ta ta ti ti ta ti ti ta pp ta ta ta ti ti ta ti ti ta pp
 }

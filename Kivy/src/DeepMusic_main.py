@@ -11,7 +11,6 @@ from kivy.uix.boxlayout    import BoxLayout
 from kivy.uix.spinner      import Spinner
 from kivy.uix.anchorlayout import AnchorLayout
 
-
 class SmoothButton(Button):
     pass
 
@@ -63,17 +62,30 @@ class DeepMusic(App):
         
         self.back_color_n_blue= (0.157, 0.455, 0.753, 0.5)
         self.back_color_d_blue= (0.157, 0.455, 0.753, 0.2)
+    
+        # Read kottak.txt and populate songs, tunes and rythm
+        file = open('../src/conf/kottak.txt', mode = 'r', encoding = 'utf-8-sig')
+        lines=file.read().splitlines() 
+        file.close()
+        
+        self.songs = []
+        self.tunes = {}
+        self.rythm = {}
+
+        for i in range(len(lines)):
+            if lines[i] == str("--Title--"):
+                self.songs.append(lines[i+1])
+                self.tunes[lines[i+1]] = lines[i+3].split()
+                self.rythm[lines[i+1]] = lines[i+5].split()
+        
         # Default image for camera
         self.image_src = 'pics/background_640x480.jpg'
-        
         self.layout = MainWindow()    
-        
-        '''
-        Refresh displayed picture example:
-        # layout.image_src = 'pics/do.png'
-        '''      
              
         return self.layout
+    
+    def displayUpdate(self, picture_ref):
+        self.layout.image_src = picture_ref
         
     # Callback functions for the elements of settings window 
     def checkbox_Predict(self, instance, value): 
@@ -106,6 +118,9 @@ class DeepMusic(App):
             
     def spinner_Language(self, text):
         print('Language: ', text)
+        
+    def spinner_Song(self, text):
+        print('Song: ', text)
             
 # If this file is the main file launch the application  
 if __name__ == "__main__":
