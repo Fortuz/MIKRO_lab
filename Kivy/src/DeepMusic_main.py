@@ -125,12 +125,21 @@ class DeepMusic(App):
     def spinner_Song(self, text):
         print('Song: ', text)
         print(self.tunes[text])
+        str_1 = 'pics/'
+        str_2 = '.png'
+        self.layout.tune_display  = [(str_1 + x + str_2) for x in self.tunes[text]]
+        self.layout.rythm_display = [(str_1 + x + str_2) for x in self.rythm[text]]
             
-    def btn_Next(self):
+    def btn_Next(self, n):
         print('Next')
-        self.layout.tune_display[0] = 'pics/fa.png'
-        self.layout.rythm_display[0] = 'pics/mi.png'
+        self.layout.tune_display  = self.layout.tune_display[n:] + self.layout.tune_display[:n]
+        self.layout.rythm_display = self.layout.rythm_display[n:] + self.layout.rythm_display[:n]
          
+    def btn_Prev(self, n):
+        print('Prev')
+        self.layout.tune_display  = self.layout.tune_display[-n:] + self.layout.tune_display[:-n]
+        self.layout.rythm_display = self.layout.rythm_display[-n:] + self.layout.rythm_display[:-n]
+        
 # If this file is the main file launch the application  
 if __name__ == "__main__":
     DeepMusic().run()

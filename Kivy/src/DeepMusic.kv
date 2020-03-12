@@ -102,6 +102,7 @@
             Button:
                 size_hint: 0.1, 1
                 text: "Prev"
+                on_release: app.btn_Prev(8)
                     
             GridLayout:
                 cols: 1
@@ -233,7 +234,7 @@
                 size_hint: 0.1, 1
                 pos: root.width - self.width, 0
                 text: "Next"
-                on_release: app.btn_Next()
+                on_release: app.btn_Next(8)
                     
 <SettingsPopup>
     title: "Settings"
