@@ -1,7 +1,7 @@
 <SmoothButton>
     background_color: (0,0,0,0)
     background_normal: ''
-    color: root.btn_text_color
+    color: app.btn_text_color
     size_hint: 0.075, 0.09
     back_color_normal: (0.157, 0.455, 0.753, 0.5)
     back_color_down:   (0.157, 0.455, 0.753, 0.2)
@@ -15,10 +15,14 @@
             radius: self.border_radius
 
 <MainWindow>
-    id: mainwindow
+    tune_enable:  1, 1, 1, 0
+    rythm_enable: 1, 1, 1, 0
+    tune_display:  ['pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png'] 
+    rythm_display: ['pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png','pics/none.png']
+    
     canvas.before:
         Color:
-            rgba: root.background_color
+            rgba: app.background_color
         Rectangle:
             pos: self.pos
             size: self.size
@@ -27,7 +31,7 @@
         size: root.size
           
         Image:
-            source: root.image_src
+            source: app.image_src
             allow_stretch: True
             keep_ratio: True
             size_hint_y: None
@@ -42,8 +46,8 @@
             size: 40, 40
             size_hint: None, None
             pos: 5, root.height - self.height - 5
-            back_color_normal: (0.753, 0.753, 0.753, 0.5)
-            back_color_down: (0.753, 0.753, 0.753, 0.2)
+            back_color_normal: app.back_color_normal
+            back_color_down:   app.back_color_down
             on_release: root.btn_settings()
             Image:
                 source: 'pics/kivy_logo_settings2.png'
@@ -57,8 +61,8 @@
             size: 40, 40
             size_hint: None, None
             pos: 5, root.height - (2*self.height) - (2*5)
-            back_color_normal: (0.753, 0.753, 0.753, 0.5)
-            back_color_down: (0.753, 0.753, 0.753, 0.2)
+            back_color_normal: app.back_color_normal
+            back_color_down: app.back_color_down
             on_release: root.btn_help()
             Image:
                 source: 'pics/kivy_logo_help.png'
@@ -71,8 +75,8 @@
             id: credits
             size: 40, 40
             size_hint: None, None
-            back_color_normal: (0.753, 0.753, 0.753, 0.5)
-            back_color_down: (0.753, 0.753, 0.753, 0.2)
+            back_color_normal: app.back_color_normal
+            back_color_down:   app.back_color_down
             pos: 5, root.height - (3*self.height) - (3*5)
             on_release: root.btn_credits()
             Image:
@@ -82,11 +86,161 @@
                 x: self.parent.x
                 size: 40, 40
             
+        BoxLayout:
+            size: 150, 40
+            size_hint: None, None
+            pos: root.width - self.width - 5 , root.height - self.height - 5
+            Spinner:
+                text: 'None'
+                values: app.songs
+                background_color: 1,1,1,0.9
+                on_text: app.spinner_Song(self.text)
+        
+        FloatLayout:
+            size_hint: 1, 0.2
+            
+            Button:
+                size_hint: 0.1, 1
+                text: "Prev"
+                on_release: app.btn_Prev(8)
+                    
+            GridLayout:
+                cols: 1
+                rows: 2
+                size_hint: 0.8, 1
+                pos_hint:{'center_x':0.5}
+                inLayout: None, 1
+                
+                BoxLayout:
+                    size_hint: 1, 1
+                    pos: self.pos
+                    pos_hint:{'center_x':0.5}
+                    
+                    canvas.before:
+                        Color:
+                            rgba: root.rythm_enable
+                        Rectangle:
+                            size:self.size
+                            pos: self.pos
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[0]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:
+                        color: root.rythm_enable                    
+                        source: root.rythm_display[1]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[2]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.rythm_enable
+                        source: root.rythm_display[3]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[4]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:
+                        color: root.rythm_enable                    
+                        source: root.rythm_display[5]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.rythm_enable
+                        source: root.rythm_display[6]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:   
+                        color: root.rythm_enable                 
+                        source: root.rythm_display[7]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                BoxLayout:
+                    size_hint: 1, 1
+                    pos: self.pos
+                    pos_hint:{'center_x':0.5}
+                
+                    canvas.before:
+                        Color:
+                            rgba: root.tune_enable
+                        Rectangle:
+                            size:self.size
+                            pos: self.pos
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[0]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[1]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[2]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[3]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[4]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[5]
+                        allow_stretch: True
+                        keep_ratio: True
+                        
+                    Image:
+                        color: root.tune_enable
+                        source: root.tune_display[6]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+                    Image:                    
+                        color: root.tune_enable
+                        source: root.tune_display[7]
+                        allow_stretch: True
+                        keep_ratio: True
+                
+            
+            Button:
+                size_hint: 0.1, 1
+                pos: root.width - self.width, 0
+                text: "Next"
+                on_release: app.btn_Next(8)
+                    
 <SettingsPopup>
     title: "Settings"
     size_hint: None, None 
     size: 500, 400
-    title_color: self.text_color
+    title_color: app.text_color
     
     GridLayout:
         cols:1
@@ -101,42 +255,42 @@
             
             Label:
                 text: "Prediction feedback enable"
-                color: root.text_color
+                color: app.text_color
                 
             CheckBox:
-                color: root.cb_color
-                on_active: root.checkbox_Predict(self, self.active) 
+                color: app.cb_color
+                on_active: app.checkbox_Predict(self, self.active) 
             
             Label:
                 text: "Tune help enable"
-                color: root.text_color
+                color: app.text_color
                 
             CheckBox:
-                color: root.cb_color
-                on_active: root.checkbox_Tune(self, self.active) 
-                
+                color: app.cb_color
+                on_active: 
+                    app.checkbox_Tune(self, self.active) 
             Label:
                 text: "Rythm help enable"
-                color: root.text_color
+                color: app.text_color
                 
             CheckBox:
-                color: root.cb_color
-                on_active: root.checkbox_Rythm(self, self.active) 
-                
+                color: app.cb_color
+                on_active: app.checkbox_Rythm(self, self.active) 
+                    
             Label:
                 text: "Volume"
-                color: root.text_color
+                color: app.text_color
                 
             Slider: 
                 orientation: "horizontal"
                 min: 0
                 max: 100
                 value: 50
-                on_value: root.slider_Volume(self, int(self.value))
+                on_value: app.slider_Volume(self, int(self.value))
     
             Label:
                 text: "Instrument"
-                color: root.text_color
+                color: app.text_color
                 
             AnchorLayout:
                 anchor_x: 'center'
@@ -144,11 +298,11 @@
                     size_hint: 0.5, 0.9
                     text: "Violin"
                     values: ["Violin", "Flute"]
-                    on_text: root.spinner_Instrument(self.text)
+                    on_text: app.spinner_Instrument(self.text)
                 
             Label:
                 text: "Language"
-                color: root.text_color
+                color: app.text_color
                                     
             AnchorLayout:
                 anchor_x: 'center'
@@ -156,7 +310,7 @@
                     size_hint: 0.5, 0.9
                     text: 'English'
                     values: 'English', 'Magyar'
-                    on_text: root.spinner_Language(self.text)
+                    on_text: app.spinner_Language(self.text)
                 
         FloatLayout:
             size_hint: 0.5, 0.5
@@ -165,11 +319,12 @@
                 size_hint: 0.3, 0.5
                 border_radius: [18,0,18,0]
                 pos_hint: {"center_x":0.5, "center_y":0.5}
-                on_release: root.btn_SettingsApply()
+                on_release: 
+                    root.btn_SettingsApply()
         
 <HelpPopup>
     title: "Help"
-    title_color: self.text_color
+    title_color: app.text_color
     size_hint: None, None
     size: 750, 420
     
@@ -245,7 +400,7 @@
         
 <CreditsPopup>
     title: "Credits"
-    title_color: self.text_color
+    title_color: app.text_color
     size_hint: None, None
     size: 500, 500
     
@@ -257,37 +412,37 @@
         
         Label:
             text: 'This application was made by'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: 'Natabara Gyongyossy'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: 'Balazs Nagy'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: '&'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
             
         Label:
             text: 'Mark Domonkos'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: 'at the'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
         
         Label:
             text: 'Budapest University of Technology and Economics'
-            color: root.text_color
+            color: app.text_color
             size_hint: 0.6, 0.1
             
         AnchorLayout:
